@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*Your Custom CSS Goes here*/
+
+html {
+  scroll-behavior: smooth;
+}
+
+h1 {
+  @apply text-4xl tracking-tighter mb-3 text-center lg:text-7xl;
+}
+
+h3 {
+  @apply text-2xl font-bold mb-3;
+}
+
+.clamp-main {
+  width: clamp(70vw, calc(13rem + 50vw), 98vw);
+}
+
+.clamp-logo {
+  width: clamp(50vw,calc(7rem + 50vw),95vw);
+}
+
+.text-hr::before, .text-hr::after {
+  content: '';
+  width: calc(50%-6rem);
+  @apply border-t-2 border-gray-200 absolute top-1/2;
+}
+
+.text-hr::before {
+  @apply left-0;
+}
+
+.text-hr::after {
+  @apply right-0;
+}
+
+/* Syntax Highlighting*/
+
+body :not(pre) > code[class*="language-"],
+body pre[class*="language-"] {
+  @apply bg-gray-800;
+}
