@@ -649,30 +649,6 @@ video {
   }
 }
 
-/*Your Custom CSS Goes here*/
-
 html {
   scroll-behavior: smooth;
-}
-
-h1 {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-  margin-bottom: 0.75rem;
-  text-align: center;
-  letter-spacing: -0.05em;
-}
-
-@media (min-width: 1024px) {
-  h1 {
-    font-size: 4.5rem;
-    line-height: 1;
-  }
-}
-
-h3 {
-  font-weight: 700;
-  font-size: 1.5rem;
-  line-height: 2rem;
-  margin-bottom: 0.75rem;
 }
