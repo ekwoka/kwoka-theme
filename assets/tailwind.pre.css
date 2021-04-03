@@ -37,10 +37,3 @@ h3 {
 .text-hr::after {
   @apply right-0;
 }
-
-/* Syntax Highlighting*/
-
-body :not(pre) > code[class*="language-"],
-body pre[class*="language-"] {
-  @apply bg-gray-800;
-}
