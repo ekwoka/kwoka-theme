@@ -1,5 +1,27 @@
 {
+  "name": "kwoka-theme",
+  "version": "0.0.1",
+  "description": "A Shopify Theme Built on AlpineJS and TailwindCSS",
+  "scripts": {
+    "css": "NODE_ENV=production postcss assets/tailwind.pre.css --o assets/tailwind.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": {
+    "name": "Eric Kwoka",
+    "email": "ninjatheory@gmail.com",
+    "url": "https://thekwoka.net/"
+  },
   "dependencies": {
+    "autoprefixer": "^10.2.5",
+    "postcss": "^8.2.9"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.4.0",
+    "cssnano": "^4.1.10",
+    "postcss-cli": "^8.3.1",
     "tailwindcss": "^2.0.4"
   }
 }
