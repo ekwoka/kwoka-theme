@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "A Shopify Theme Built on AlpineJS and TailwindCSS",
   "scripts": {
-    "css": "NODE_ENV=production postcss assets/tailwind.pre.css --o assets/tailwind.css"
+    "css": "NODE_ENV=production postcss assets/tailwind.pre.css --o assets/tailwind.css",
+    "dev": "postcss assets/tailwind.pre.css --o assets/tailwind.css"
   },
   "repository": {
     "type": "git",
