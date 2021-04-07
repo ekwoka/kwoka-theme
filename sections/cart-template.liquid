@@ -91,7 +91,7 @@
                   </div>
                 </div>
               </td>
-              <td class="cart__price text-right">
+              <td class="text-right cart__price">
 
                 {%- assign hasDiscount = false -%}
                 {%- if item.original_price != item.final_price -%}
@@ -186,7 +186,7 @@
                   <span class="cart__qty-error-message" data-cart-quantity-error-message></span>
                 </div>
               </td>
-              <td class="cart__quantity-td text-right small--hide">
+              <td class="text-right cart__quantity-td small--hide">
                 <div class="cart__qty">
                   <label for="updates_large_{{ item.key }}" class="cart__qty-label" data-quantity-label-desktop>{{ 'cart.label.quantity' | t }}</label>
                   <input id="updates_large_{{ item.key }}" class="cart__qty-input" type="number"
@@ -199,7 +199,7 @@
                   <span class="cart__qty-error-message" data-cart-quantity-error-message></span>
                 </div>
               </td>
-              <td class="cart__final-price text-right small--hide" data-cart-item-line-price>
+              <td class="text-right cart__final-price small--hide" data-cart-item-line-price>
                 {%- comment -%}
                   Markup template for discount item
                 {%- endcomment -%}

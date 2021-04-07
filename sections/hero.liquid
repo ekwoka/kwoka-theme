@@ -27,7 +27,7 @@
         {%- assign slide_width = section.settings.image.width -%}
       {%- endif -%}
       <div class="hero-fixed-width__content">
-        <div class="page-width text-center">
+        <div class="text-center page-width">
           {%- if section.settings.title != blank -%}
             <h2 class="h1 mega-title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">{{ section.settings.title | escape }}</h2>
           {%- endif -%}
@@ -86,7 +86,7 @@
       </div>
     {%- endif -%}
       <div class="hero__inner">
-        <div class="page-width text-center">
+        <div class="text-center page-width">
           {%- if section.settings.title != blank -%}
             <h2 class="h1 mega-title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">{{ section.settings.title | escape }}</h2>
           {%- endif -%}
