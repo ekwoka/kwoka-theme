@@ -1,5 +1,5 @@
 <div class="page-width">
-  <div class="section-header text-center">
+  <div class="text-center section-header">
     <h1>{{ 'customer.account.title' | t }}</h1>
     <p><a href="{{ routes.account_url }}">{{ 'customer.account.return' | t }}</a></p>
   </div>
@@ -176,7 +176,7 @@
                 </th>
                 <td class="text-right" data-label="{{ 'customer.order.discount' | t }}">
                   <div class="order-discount-wrapper">
-                    <span class="order-discount order-discount--title text-left medium-up--hide">
+                    <span class="text-left order-discount order-discount--title medium-up--hide">
                       {% include 'icon-saletag' %}{{- discount_application.title -}}
                     </span>
                     <span class="order-discount">-{{ discount_application.total_allocated_amount | money }}</span>

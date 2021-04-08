@@ -1,6 +1,6 @@
 <div class="page-width" data-section-id="{{ section.id }}" data-section-type="quotes">
   {% if section.settings.title != blank %}
-    <div class="section-header text-center">
+    <div class="text-center section-header">
       <h2>{{ section.settings.title | escape }}</h2>
     </div>
   {% endif %}
@@ -17,7 +17,7 @@
               data-slider-slide-index="{{ forloop.index0 }}"
               data-slider-item>
 
-              <blockquote class="quotes-slider__text text-center">
+              <blockquote class="text-center quotes-slider__text">
                 <span class="quote-icon">{% include 'icon-quote' %}</span>
                 {% if block.settings.quote != blank %}
                   <div class="rte-setting rte">{{ block.settings.quote }}</div>
