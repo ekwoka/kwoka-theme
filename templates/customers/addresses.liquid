@@ -1,6 +1,6 @@
 {% paginate customer.addresses by 5 %}
 
-<div class="page-width text-center">
+<div class="text-center page-width">
   <header class="section-header">
     <h1>{{ 'customer.addresses.title' | t }}</h1>
     <p><a href="{{ routes.account_url }}">{{ 'customer.account.return' | t }}</a></p>
@@ -85,7 +85,7 @@
       <ul>
         {% for address in customer.addresses %}
           <li>
-            <div class="address text-center">
+            <div class="text-center address">
               {% if address == customer.default_address %}
                 <h2 class="h4">{{ 'customer.addresses.default' | t }}</h2>
               {% endif %}
