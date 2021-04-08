@@ -54,6 +54,57 @@
     {% endif %}
   {% endif %}
 
+  <header class="relative z-10 w-full px-2 pt-0 bg-white border-b border-gray-300 shadow-2xl h-26 md:h-20 md:pt-8 md:px-4">
+    <div class="flex max-w-screen-lg mx-auto align-middle">
+      <div class="flex-none order-first w-20 text-center md:hidden">
+        <button class="px-6 py-6 focus:ring-0">
+          <svg class="block w-8 h-8 mx-auto icon"><use xlink:href="#icon-menu"></use></svg>
+          <span class="block mx-auto">Menu</span>
+        </button>
+
+      </div>
+      <a href="{{ routes.root_url }}" class="flex-auto order-2 w-8 text-xl font-semibold tracking-widest text-center break-word md:order-first">
+        {% if section.settings.logo %}
+        {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+          {% capture logo_alt %}{{ section.settings.logo.alt | default: shop.name }}{% endcapture %}
+          <img class="lazyload js"
+            src="{{ section.settings.logo | img_url: '300x300' }}"
+            data-src="{{ img_url }}"
+            data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+            data-aspectratio="{{ section.settings.logo.aspect_ratio }}"
+            data-sizes="auto"
+            alt="{{ logo_alt | escape }}"
+            style="max-width: {{ section.settings.logo_max_width }}px">
+          <noscript>
+            {% capture image_size %}{{ section.settings.logo_max_width | escape }}x{% endcapture %}
+            <img src="{{ section.settings.logo | img_url: image_size }}"
+              srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+              alt="{{ section.settings.logo.alt | default: shop.name }}"
+              style="max-width: {{ section.settings.logo_max_width }}px;">
+          </noscript>
+
+        {% else %}
+          <h1 class="pt-8 md:pt-0">
+            {{ shop.name }}
+          </h1>
+        {% endif %}
+      </a>
+
+  
+      <nav class="flex-wrap flex-auto hidden text-center md:flex">
+        {% include 'site-nav', linklist: section.settings.main_linklist %}
+      </nav>
+  
+      <div class="flex-none order-last w-20 text-center md:flex-auto">
+        <button class="flex flex-col px-6 py-6 mx-auto md:flex-row focus:ring-0 md:-mt-6">
+          <svg class="flex-none order-1 block w-8 h-8 mx-auto md:w-6 md:ml-2 md:h-6 md:order-2 icon md:inline-block"><use xlink:href="#icon-cart"></use></svg>
+          <span class="flex-none order-2 block mx-auto md:order-1 md:inline-block">Cart</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+<!--
   <header class="site-header{% if section.settings.align_logo == 'left' %} border-bottom logo--left{% else %} logo--center{% endif %}" role="banner">
     <div class="grid grid--no-gutters grid--table site-header__mobile-nav">
       {% if section.settings.align_logo == 'center' %}
@@ -245,6 +296,7 @@
       </ul>
     </nav>
   </header>
+-->
 
   {% if section.settings.align_logo == 'center' %}
   <nav class="small--hide border-bottom" id="AccessibleNav" role="navigation">
