@@ -5,7 +5,10 @@
   "scripts": {
     "css:build": "NODE_ENV=production postcss assets/tailwind.pre.css --o assets/tailwind.css --verbose",
     "css:fulldev": "postcss assets/tailwind.pre.css --o assets/tailwind.css --verbose",
-    "css:watch": "NODE_ENV=development TAILWIND_MODE=watch postcss assets/tailwind.pre.css --o assets/tailwind.css --verbose -w"
+    "css:watch": "NODE_ENV=development TAILWIND_MODE=watch postcss assets/tailwind.pre.css --o assets/tailwind.css --verbose -w",
+    "init:dev": "theme watch -e development & npm run css:watch",
+    "build:dev": "npm run css:build & theme deploy -e development",
+    "build:prod": "npm run css:build & theme deploy -e production --allow-live"
   },
   "repository": {
     "type": "git",
