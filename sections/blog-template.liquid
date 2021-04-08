@@ -1,7 +1,7 @@
 {% paginate blog.articles by 12 %}
 
 <div class="page-width">
-  <header class="text-center section-header">
+  <header class="section-header text-center">
     <h1>{{ page_title }}</h1>
     {% if blog.tags.size > 0 %}
       <div class="blog-filter">

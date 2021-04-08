@@ -54,7 +54,7 @@
       {% endif %}
     {% else %}
       <div class="page-width">
-        <div class="text-center section-header">
+        <div class="section-header text-center">
           <h1>
               <span class="visually-hidden">{{ 'collections.general.collection_label' | t }}: </span>
               {{ collection.title }}
@@ -81,7 +81,7 @@
                   <div class="filters-toolbar__item-child">
                     <label class="filters-toolbar__label select-label" for="FilterTags">{{ 'collections.filters.title_tags' | t }}</label>
                     <div class="filters-toolbar__input-wrapper select-group">
-                      <select class="hidden filters-toolbar__input" name="FilterTags" id="FilterTags" aria-describedby="a11y-refresh-page-message a11y-selection-message" data-select-input>
+                      <select class="filters-toolbar__input hidden" name="FilterTags" id="FilterTags" aria-describedby="a11y-refresh-page-message a11y-selection-message" data-select-input>
                         <option value="{{ collection.url }}">{{ 'collections.filters.all_tags' | t }}</option>
                         {% for tag in collection.all_tags %}
                           {%- assign new_url = tag | link_to_tag: tag | split: 'href="' | last | split: '"' | first -%}
@@ -100,7 +100,7 @@
                   <label class="filters-toolbar__label select-label" for="SortBy">{{ 'collections.sorting.title' | t }}</label>
                   <div class="filters-toolbar__input-wrapper select-group">
                     <select name="sort_by" id="SortBy"
-                      class="hidden filters-toolbar__input"
+                      class="filters-toolbar__input hidden"
                       aria-describedby="a11y-refresh-page-message a11y-selection-message"
                       data-default-sortby="{{ collection.default_sort_by }}"
                       data-select-input

@@ -3,8 +3,8 @@
 {%- assign formatted_initial_value = gift_card.initial_value | money_without_trailing_zeros: gift_card.currency -%}
 {%- assign formatted_initial_value_stripped = formatted_initial_value | strip_html -%}
 
-<header class="text-center giftcard__header" role="banner">
-  <div class="text-center site-header__logo h1">
+<header class="giftcard__header text-center" role="banner">
+  <div class="site-header__logo h1 text-center">
     <a href="{{ shop.url }}" class="site-header__link site-header__logo-link">{{ shop.name }}</a>
   </div>
 
@@ -55,7 +55,7 @@
 
     <div id="QrCode" class="giftcard__qr-code" data-identifier="{{ gift_card.qr_identifier }}"></div>
 
-    <ul class="text-center giftcard-action-list">
+    <ul class="giftcard-action-list text-center">
       <li class="giftcard-action-list__item">
         <a href="{{ shop.url }}"
           class="btn"

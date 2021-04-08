@@ -54,15 +54,15 @@
     {% endif %}
   {% endif %}
 
-  <header class="relative block text-gray-800 border-0 border-gray-300 border-solid leading-6 md:py-0 md:px-12" role="banner">
-    <div class="relative block text-gray-800 border-0 border-gray-300 border-solid leading-6 md:py-0 md:px-12" 
-      style="list-style: none; content: ''; z-index: 11;">
+  <header class="site-header{% if section.settings.align_logo == 'left' %} border-bottom logo--left{% else %} logo--center{% endif %}" role="banner">
+    <div class="grid grid--no-gutters grid--table site-header__mobile-nav">
       {% if section.settings.align_logo == 'center' %}
-        {%- assign logo_classes = 'table-cell float-none pl-0 w-full leading-6 text-gray-800 align-middle md:w-1/4' -%}
+        {%- assign logo_classes = 'medium-up--one-third medium-up--push-one-third logo-align--center' -%}
       {% else %}
-        {%- assign logo_classes = 'table-cell float-none pl-0 w-full leading-6 text-gray-800 align-middle md:w-1/4' -%}
+        {%- assign logo_classes = 'medium-up--one-quarter logo-align--left' -%}
       {% endif %}
-          <div class="grid__item {{ logo_classes }}">
+
+      <div class="grid__item {{ logo_classes }}">
         {% comment %}
           Use the uploaded logo from theme settings if enabled.
           Site name gets precedence with H1 tag on homepage, div on other pages.
