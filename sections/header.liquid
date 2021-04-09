@@ -54,8 +54,8 @@
     {% endif %}
   {% endif %}
 
-  <header class="relative z-10 w-full px-2 pt-0 bg-white border-b border-gray-300 shadow-2xl h-26 md:h-20 md:pt-8 md:px-4">
-    <div class="flex max-w-screen-lg mx-auto align-middle">
+  <header class="relative z-10 h-[max-content] w-full px-2 py-4 bg-white border-b border-gray-300 shadow-md min-h-26 md:min-h-20 md:px-4">
+    <div class="flex items-center max-w-screen-lg mx-auto align-middle">
       <div class="flex-none order-first w-20 text-center md:hidden">
         <button class="px-6 py-6 focus:ring-0">
           <svg class="block w-8 h-8 mx-auto icon"><use xlink:href="#icon-menu"></use></svg>
@@ -64,39 +64,45 @@
 
       </div>
       <a href="{{ routes.root_url }}" class="flex-auto order-2 w-8 text-xl font-semibold tracking-widest text-center break-word md:order-first">
-        {% if section.settings.logo %}
-        {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-          {% capture logo_alt %}{{ section.settings.logo.alt | default: shop.name }}{% endcapture %}
-          <img class="lazyload js"
-            src="{{ section.settings.logo | img_url: '300x300' }}"
-            data-src="{{ img_url }}"
-            data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
-            data-aspectratio="{{ section.settings.logo.aspect_ratio }}"
-            data-sizes="auto"
-            alt="{{ logo_alt | escape }}"
-            style="max-width: {{ section.settings.logo_max_width }}px">
-          <noscript>
-            {% capture image_size %}{{ section.settings.logo_max_width | escape }}x{% endcapture %}
-            <img src="{{ section.settings.logo | img_url: image_size }}"
-              srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
-              alt="{{ section.settings.logo.alt | default: shop.name }}"
-              style="max-width: {{ section.settings.logo_max_width }}px;">
-          </noscript>
-
-        {% else %}
-          <h1 class="pt-8 md:pt-0">
-            {{ shop.name }}
-          </h1>
-        {% endif %}
+        {%- case section.settings.logoType -%}
+          {%- when 'none' -%}
+            <h1 class="">
+              {{ shop.name }}
+            </h1>
+          {%- when 'img' -%}
+            {%- assign img_url = section.settings.logoImg | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            {%- assign img_w = section.settings.logo_max_width | append: 'px' -%}
+            {%- assign img_h = section.settings.logo_max_width | divided_by: section.settings.logoImg.aspect_ratio | append: 'px' -%}
+            {%- assign img_max_w = '50' -%}
+            {%- assign img_max_h = img_max_w | divided_by: section.settings.logoImg.aspect_ratio | append: 'vw' -%}
+            <img class="max-w-full mx-auto lazyload js"
+                 src="{{ section.settings.logoImg | img_url: '100x' }}"
+                 data-src="{{ img_url }}"
+                 data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                 data-sizes="auto"
+                 alt="{{ section.settings.logo.alt | default: shop.name }}"
+                 data-aspectratio="{{ section.settings.logoImg.aspect_ratio }}"
+                 style="width: {{ img_w }}; height: {{ img_h }}; max-width: {{ img_max_w }}; max-height: {{ img_max_h }};">
+            <noscript>
+              {% capture image_size %}{{ section.settings.logo_max_width | escape }}x{% endcapture %}
+              <img class="mx auto"
+                   src="{{ section.settings.logoImg | img_url: image_size }}"
+                   srcset="{{ section.settings.logoImg | img_url: image_size }} 1x, {{ section.settings.logoImg | img_url: image_size, scale: 2 }} 2x"
+                   alt="{{ section.settings.logo.alt | default: shop.name }}"
+                   style="width: {{ img_w }}; height: {{ img_h }}; max-width: {{ img_max_w }}; max-height: {{ img_max_h }};">
+            </noscript>
+          {%- when 'svg' -%}
+            <div class="mx-auto" style="max-width: {{ section.settings.logo_max_width }}px;">
+              {{ section.settings.svgCode }}
+            </div>
+          {%- endcase -%}
       </a>
-
-  
       <nav class="flex-wrap flex-auto hidden text-center md:flex">
         {% include 'site-nav', linklist: section.settings.main_linklist %}
       </nav>
   
       <div class="flex-none order-last w-20 text-center md:flex-auto">
-        <button class="flex flex-col px-6 py-6 mx-auto md:flex-row focus:ring-0 md:-mt-6">
+        <button class="flex flex-col px-6 py-6 mx-auto md:flex-row focus:ring-0">
           <svg class="flex-none order-1 block w-8 h-8 mx-auto md:w-6 md:ml-2 md:h-6 md:order-2 icon md:inline-block"><use xlink:href="#icon-cart"></use></svg>
           <span class="flex-none order-2 block mx-auto md:order-1 md:inline-block">Cart</span>
         </button>
@@ -375,112 +381,33 @@
   "settings": [
     {
       "type": "radio",
-      "id": "align_logo",
-      "label": {
-        "cs": "Zarovnání loga",
-        "da": "Logojustering",
-        "de": "Logo-Ausrichtung",
-        "en": "Logo alignment",
-        "es": "Alineación de logo",
-        "fi": "Logon tasaus",
-        "fr": "Alignement du logo",
-        "it": "Allineamento logo",
-        "ja": "ロゴアラインメント",
-        "ko": "로고 정렬",
-        "nb": "Logojustering",
-        "nl": "Logo-uitlijning",
-        "pl": "Wyrównanie logo",
-        "pt-BR": "Alinhamento do logo",
-        "pt-PT": "Alinhamento do logótipo",
-        "sv": "Logojustering",
-        "th": "การจัดวางโลโก้",
-        "tr": "Logo hizalaması",
-        "vi": "Căn chỉnh logo",
-        "zh-CN": "logo 对齐方式",
-        "zh-TW": "商標對齊"
-      },
-      "default": "left",
+      "id": "logoType",
+      "label": "Logo Type",
+      "default": "none",
       "options": [
-        {
-          "value": "left",
-          "label": {
-            "cs": "Doleva",
-            "da": "Venstre",
-            "de": "Links",
-            "en": "Left",
-            "es": "Izquierda",
-            "fi": "Vasen",
-            "fr": "Gauche",
-            "it": "Sinistra",
-            "ja": "左",
-            "ko": "왼쪽",
-            "nb": "Venstre",
-            "nl": "Links",
-            "pl": "Do lewej",
-            "pt-BR": "Esquerda",
-            "pt-PT": "Esquerda",
-            "sv": "Vänster",
-            "th": "ด้านซ้าย",
-            "tr": "Sol",
-            "vi": "Bên trái",
-            "zh-CN": "左侧",
-            "zh-TW": "左方"
-          }
-        },
-        {
-          "value": "center",
-          "label": {
-            "cs": "Na střed",
-            "da": "Centreret",
-            "de": "Mittig",
-            "en": "Centered",
-            "es": "Centrada",
-            "fi": "Keskitetty",
-            "fr": "Centré",
-            "it": "Centrato",
-            "ja": "中央揃え",
-            "ko": "센터 맞추기",
-            "nb": "Sentrert",
-            "nl": "Gecentreerd",
-            "pl": "Wyśrodkowane",
-            "pt-BR": "Centralizado",
-            "pt-PT": "Centrado",
-            "sv": "Centrera",
-            "th": "ตรงกลาง",
-            "tr": "Orta",
-            "vi": "Giữa",
-            "zh-CN": "居中",
-            "zh-TW": "置中"
-          }
-        }
+      {
+        "value": "none",
+        "label": "None"
+      },
+      {
+        "value": "svg",
+        "label": "SVG"
+      },
+      {
+        "value": "img",
+        "label": "Image"
+      }
       ]
     },
     {
       "type": "image_picker",
-      "id": "logo",
-      "label": {
-        "cs": "Obrázek loga",
-        "da": "Logobillede",
-        "de": "Logo-Foto",
-        "en": "Logo image",
-        "es": "Logo",
-        "fi": "Logokuva",
-        "fr": "Image du logo",
-        "it": "Immagine del logo",
-        "ja": "ロゴ画像",
-        "ko": "로고 이미지",
-        "nb": "Logobilde",
-        "nl": "Afbeelding van logo",
-        "pl": "Obraz logo",
-        "pt-BR": "Imagem do logo",
-        "pt-PT": "Imagem do logótipo",
-        "sv": "Logobild",
-        "th": "รูปภาพโลโก้",
-        "tr": "Logo görseli",
-        "vi": "Hình ảnh logo",
-        "zh-CN": "logo 图片",
-        "zh-TW": "標誌圖片"
-      }
+      "id": "logoImg",
+      "label": "Image Logo"
+    },
+    {
+      "type": "html",
+      "id": "svgCode",
+      "label": "SVG Logo Code"
     },
     {
       "type": "range",
@@ -510,7 +437,7 @@
       },
       "min": 50,
       "max": 250,
-      "step": 5,
+      "step": 10,
       "unit": "px",
       "default": 100
     },

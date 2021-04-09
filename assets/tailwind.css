@@ -761,6 +761,11 @@ select {
 .hidden {
 	display: none;
 }
+.h-\[max-content\] {
+	height: -webkit-max-content;
+	height: -moz-max-content;
+	height: max-content;
+}
 .h-8 {
 	height: 2rem;
 }
@@ -776,6 +781,9 @@ select {
 .max-w-screen-lg {
 	max-width: 1024px;
 }
+.max-w-full {
+	max-width: 100%;
+}
 .flex-none {
 	flex: none;
 }
@@ -787,6 +795,9 @@ select {
 }
 .flex-wrap {
 	flex-wrap: wrap;
+}
+.items-center {
+	align-items: center;
 }
 .truncate {
 	overflow: hidden;
@@ -808,6 +819,10 @@ select {
 	padding-left: 0.5rem;
 	padding-right: 0.5rem;
 }
+.py-4 {
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
 .px-6 {
 	padding-left: 1.5rem;
 	padding-right: 1.5rem;
@@ -815,12 +830,6 @@ select {
 .py-6 {
 	padding-top: 1.5rem;
 	padding-bottom: 1.5rem;
-}
-.pt-0 {
-	padding-top: 0px;
-}
-.pt-8 {
-	padding-top: 2rem;
 }
 .text-right {
 	text-align: right;
@@ -853,8 +862,8 @@ select {
 .tracking-wide {
 	letter-spacing: 0.025em;
 }
-.shadow-2xl {
-	--tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+.shadow-md {
+	--tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 .filter {
@@ -895,10 +904,6 @@ html {
 		order: 1;
 	}
 
-	.md\:-mt-6 {
-		margin-top: -1.5rem;
-	}
-
 	.md\:ml-2 {
 		margin-left: 0.5rem;
 	}
@@ -913,10 +918,6 @@ html {
 
 	.md\:hidden {
 		display: none;
-	}
-
-	.md\:h-20 {
-		height: 5rem;
 	}
 
 	.md\:h-6 {
@@ -938,13 +939,5 @@ html {
 	.md\:px-4 {
 		padding-left: 1rem;
 		padding-right: 1rem;
-	}
-
-	.md\:pt-8 {
-		padding-top: 2rem;
-	}
-
-	.md\:pt-0 {
-		padding-top: 0px;
 	}
 }
