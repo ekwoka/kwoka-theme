@@ -380,6 +380,10 @@
   },
   "settings": [
     {
+      "type": "header",
+      "content": "Header Logo"
+    },
+    {
       "type": "radio",
       "id": "logoType",
       "label": "Logo Type",
@@ -387,7 +391,7 @@
       "options": [
       {
         "value": "none",
-        "label": "None"
+        "label": "Text Only"
       },
       {
         "value": "svg",
@@ -402,12 +406,14 @@
     {
       "type": "image_picker",
       "id": "logoImg",
-      "label": "Image Logo"
+      "label": "Image Logo",
+      "info": "Upload Large Image"
     },
     {
       "type": "html",
       "id": "svgCode",
-      "label": "SVG Logo Code"
+      "label": "SVG Logo Code",
+      "info": "Full SVG Element Code"
     },
     {
       "type": "range",
