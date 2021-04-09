@@ -761,13 +761,13 @@ select {
 .hidden {
 	display: none;
 }
+.h-8 {
+	height: 2rem;
+}
 .h-\[max-content\] {
 	height: -webkit-max-content;
 	height: -moz-max-content;
 	height: max-content;
-}
-.h-8 {
-	height: 2rem;
 }
 .w-full {
 	width: 100%;
