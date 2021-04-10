@@ -197,6 +197,12 @@
           "show_locale_selector": true,
           "show_currency_selector": true
         }
+      },
+      "mobile-menu": {
+        "type": "mobile-menu",
+        "settings": {
+          "glass": true
+        }
       }
     },
     "content_for_index": [

@@ -724,8 +724,29 @@ select {
 .relative {
 	position: relative;
 }
+.fixed {
+	position: fixed;
+}
+.absolute {
+	position: absolute;
+}
+.top-0 {
+	top: 0px;
+}
+.bottom-0 {
+	bottom: 0px;
+}
+.left-0 {
+	left: 0px;
+}
+.right-0 {
+	right: 0px;
+}
 .z-10 {
 	z-index: 10;
+}
+.z-20 {
+	z-index: 20;
 }
 .order-first {
 	order: -9999;
@@ -769,6 +790,12 @@ select {
 	height: -moz-max-content;
 	height: max-content;
 }
+.h-screen {
+	height: 100vh;
+}
+.h-4 {
+	height: 1rem;
+}
 .w-full {
 	width: 100%;
 }
@@ -777,6 +804,12 @@ select {
 }
 .w-8 {
 	width: 2rem;
+}
+.w-5\/6 {
+	width: 83.333333%;
+}
+.w-4 {
+	width: 1rem;
 }
 .max-w-screen-lg {
 	max-width: 1024px;
@@ -789,6 +822,19 @@ select {
 }
 .flex-auto {
 	flex: 1 1 auto;
+}
+.transform {
+	--tw-translate-x: 0;
+	--tw-translate-y: 0;
+	--tw-rotate: 0;
+	--tw-skew-x: 0;
+	--tw-skew-y: 0;
+	--tw-scale-x: 1;
+	--tw-scale-y: 1;
+	transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.-translate-x-full {
+	--tw-translate-x: -100%;
 }
 .flex-col {
 	flex-direction: column;
@@ -807,13 +853,29 @@ select {
 .border-b {
 	border-bottom-width: 1px;
 }
+.border-r {
+	border-right-width: 1px;
+}
 .border-gray-300 {
 	--tw-border-opacity: 1;
 	border-color: rgba(209, 213, 219, var(--tw-border-opacity));
 }
+.border-opacity-20 {
+	--tw-border-opacity: 0.2;
+}
 .bg-white {
 	--tw-bg-opacity: 1;
 	background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+}
+.bg-gray-50 {
+	--tw-bg-opacity: 1;
+	background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
+}
+.bg-opacity-60 {
+	--tw-bg-opacity: 0.6;
+}
+.p-8 {
+	padding: 2rem;
 }
 .px-2 {
 	padding-left: 0.5rem;
@@ -830,6 +892,15 @@ select {
 .py-6 {
 	padding-top: 1.5rem;
 	padding-bottom: 1.5rem;
+}
+.pt-12 {
+	padding-top: 3rem;
+}
+.pl-12 {
+	padding-left: 3rem;
+}
+.pr-8 {
+	padding-right: 2rem;
 }
 .text-right {
 	text-align: right;
@@ -866,6 +937,10 @@ select {
 	--tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
+.shadow-2xl {
+	--tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
 .filter {
 	--tw-blur: var(--tw-empty,/*!*/ /*!*/);
 	--tw-brightness: var(--tw-empty,/*!*/ /*!*/);
@@ -877,6 +952,33 @@ select {
 	--tw-sepia: var(--tw-empty,/*!*/ /*!*/);
 	--tw-drop-shadow: var(--tw-empty,/*!*/ /*!*/);
 	filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+.backdrop-filter {
+	--tw-backdrop-blur: var(--tw-empty,/*!*/ /*!*/);
+	--tw-backdrop-brightness: var(--tw-empty,/*!*/ /*!*/);
+	--tw-backdrop-contrast: var(--tw-empty,/*!*/ /*!*/);
+	--tw-backdrop-grayscale: var(--tw-empty,/*!*/ /*!*/);
+	--tw-backdrop-hue-rotate: var(--tw-empty,/*!*/ /*!*/);
+	--tw-backdrop-invert: var(--tw-empty,/*!*/ /*!*/);
+	--tw-backdrop-opacity: var(--tw-empty,/*!*/ /*!*/);
+	--tw-backdrop-saturate: var(--tw-empty,/*!*/ /*!*/);
+	--tw-backdrop-sepia: var(--tw-empty,/*!*/ /*!*/);
+	-webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+	        backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+.backdrop-blur {
+	--tw-backdrop-blur: blur(8px);
+}
+.transition-all {
+	transition-property: all;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	transition-duration: 150ms;
+}
+.ease-out {
+	transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+.ease-in {
+	transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
 }
 @tailwind forms;
 

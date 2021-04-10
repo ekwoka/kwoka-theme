@@ -183,16 +183,21 @@
   {{ content_for_header }}
 </head>
 
-<body class="template-{{ request.page_type | handle }}">
-  {%- render 'svg-defs' -%}
+<body class="template-{{ request.page_type | handle }}" x-data="themeAlpine()">
 
-  <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+  {%- comment -%} These render code for all on-page SVG icons, as well as the core model for alpineJS to manage the template.{%- endcomment -%}
+  {% render 'alpinescript' %}
+  {% render 'svg-defs' %}
+
+  <a class="hidden" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
   {%- if settings.enable_ajax -%}
     {% include 'cart-popup' %}
   {%- endif -%}
 
   {% section 'header' %}
+
+  {% section 'mobile-menu' -%}
 
   <div class="page-container drawer-page-content" id="PageContainer">
 
