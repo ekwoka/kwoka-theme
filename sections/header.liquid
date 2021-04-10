@@ -14,7 +14,21 @@
   </style>
 {% endif %}
 
+
 <style>
+{%- if section.settings.logoType == 'img' and section.settings.logoImg -%}
+{%- assign img_w = section.settings.logo_max_width | append: 'px' -%}
+{%- assign img_h = section.settings.logo_max_width | divided_by: section.settings.logoImg.aspect_ratio | append: 'px' -%}
+{%- assign img_max_w = '50' -%}
+{%- assign img_max_h = img_max_w | divided_by: section.settings.logoImg.aspect_ratio | append: 'vw' -%}
+
+.headerLogo-image {
+  width: {{ img_w }};
+  height: {{ img_h }};
+  max-width: {{ img_max_w }};
+  max-height: {{ img_max_h }};
+}
+{%- endif %}
 .relative {
 	position: relative;
 }
@@ -234,7 +248,8 @@
   <header class="relative z-10 h-[max-content] w-full px-2 py-4 bg-white border-b border-gray-300 shadow-md min-h-26 md:min-h-20 md:px-4">
     <div class="flex items-center max-w-screen-lg mx-auto align-middle">
       <div class="flex-none order-first w-20 text-center md:hidden">
-        <button class="px-6 py-6 focus:ring-0">
+        <button class="px-6 py-6 focus:ring-0"
+                @click="menuOpen = true">
           <svg class="block w-8 h-8 mx-auto icon"><use xlink:href="#icon-menu"></use></svg>
           <span class="block mx-auto">Menu</span>
         </button>
@@ -248,25 +263,19 @@
             </h1>
           {%- when 'img' -%}
             {%- assign img_url = section.settings.logoImg | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-            {%- assign img_w = section.settings.logo_max_width | append: 'px' -%}
-            {%- assign img_h = section.settings.logo_max_width | divided_by: section.settings.logoImg.aspect_ratio | append: 'px' -%}
-            {%- assign img_max_w = '50' -%}
-            {%- assign img_max_h = img_max_w | divided_by: section.settings.logoImg.aspect_ratio | append: 'vw' -%}
-            <img class="max-w-full mx-auto lazyload js"
+            <img class="max-w-full mx-auto headerLogo-image lazyload js"
                  src="{{ section.settings.logoImg | img_url: '100x' }}"
                  data-src="{{ img_url }}"
                  data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
                  data-sizes="auto"
                  alt="{{ section.settings.logo.alt | default: shop.name }}"
-                 data-aspectratio="{{ section.settings.logoImg.aspect_ratio }}"
-                 style="width: {{ img_w }}; height: {{ img_h }}; max-width: {{ img_max_w }}; max-height: {{ img_max_h }};">
+                 data-aspectratio="{{ section.settings.logoImg.aspect_ratio }}">
             <noscript>
               {% capture image_size %}{{ section.settings.logo_max_width | escape }}x{% endcapture %}
-              <img class="mx auto"
+              <img class="mx-auto headerLogo-image"
                    src="{{ section.settings.logoImg | img_url: image_size }}"
                    srcset="{{ section.settings.logoImg | img_url: image_size }} 1x, {{ section.settings.logoImg | img_url: image_size, scale: 2 }} 2x"
-                   alt="{{ section.settings.logo.alt | default: shop.name }}"
-                   style="width: {{ img_w }}; height: {{ img_h }}; max-width: {{ img_max_w }}; max-height: {{ img_max_h }};">
+                   alt="{{ section.settings.logo.alt | default: shop.name }}">
             </noscript>
           {%- when 'svg' -%}
             <div class="mx-auto" style="max-width: {{ section.settings.logo_max_width }}px;">
@@ -287,8 +296,6 @@
     </div>
   </header>
 </div>
-
-
 
 <script type="application/ld+json">
 {
