@@ -8,11 +8,13 @@
     "css:watch": "NODE_ENV=development TAILWIND_MODE=watch postcss assets/tailwind.pre.css --o assets/tailwind.css --verbose -w",
     "deploy:dev": "theme deploy -e development",
     "deploy:prod": "theme deploy -e live --allow-live",
+    "download:dev": "theme download -e development",
     "init:dev": "theme watch -e development",
     "build:dev": "run-s css:build deploy:dev",
     "build:prod": "run-s css:build deploy:prod",
     "watch:dev": "run-p init:dev css:watch",
-    "css:header": "NODE_ENV=production postcss assets/tailwind.pre.css --o assets/header.css --verbose"
+    "css:header": "NODE_ENV=production postcss assets/tailwind.pre.css --o assets/header.css --verbose",
+    "reset:dev": "run-s download:dev build:dev"
   },
   "repository": {
     "type": "git",
