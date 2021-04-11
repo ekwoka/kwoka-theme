@@ -257,12 +257,13 @@
   <header class="relative z-10 h-[max-content] w-full px-2 py-4 bg-white border-b border-gray-300 shadow-md min-h-26 md:min-h-20 md:px-4">
     <div class="flex items-center max-w-screen-lg mx-auto align-middle">
       <div class="flex-none order-first w-20 text-center md:hidden">
-        <button class="px-6 py-6 focus:ring-0"
-                @click="menuOpen = true">
+        <a href="#mobileMenu">
+        <button class="px-6 py-6 focus:ring-0" \
+           @click.prevent="menuOpen = true">
           <svg class="block w-8 h-8 mx-auto icon"><use xlink:href="#icon-menu"></use></svg>
           <span class="block mx-auto">Menu</span>
         </button>
-
+        </a>
       </div>
       <a href="{{ routes.root_url }}" class="flex-auto order-2 w-8 text-xl font-semibold tracking-widest text-center break-word md:order-first">
         {%- case section.settings.logoType -%}
