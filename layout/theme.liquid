@@ -22,7 +22,6 @@
         <link rel="preload" as="font" href="{{ header_font | font_url }}" type="font/woff2" crossorigin>
         <link rel="preload" as="font" href="{{ base_font | font_url }}" type="font/woff2" crossorigin>
         <link rel="preload" as="font" href="{{ base_font_bold | font_url }}" type="font/woff2" crossorigin>
-        <link rel="preload" href="{{ 'theme.js' | asset_url }}" as="script">
         <link rel="preload" href="{{ 'lazysizes.js' | asset_url }}" as="script">
 
         {%- if canonical_url != blank  -%}
@@ -165,9 +164,34 @@
     <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
   {%- endif -%}
 
+  <script src="{{ 'lazysizes.js' | asset_url }}" defer></script>
+
+  {%- comment -%}
   <script src="{{ 'theme.js' | asset_url }}" defer></script>
-  <script src="{{ 'lazysizes.js' | asset_url }}" async></script>
-  <script src="{{ 'alpine.min.js' | asset_url }}" async></script>
+  <script src="{{ 'alpine.min.js' | asset_url }}" defer></script>
+  {%- endcomment -%}
+
+  <script>
+  (function() {
+    function deferLoad() {
+      var urls = ["{{ 'theme.js' | asset_url }}",
+                  "{{ 'alpine.min.js' | asset_url }}"];
+      for (var i = 0; i < urls.length; i++) {
+          var s = document.createElement('script');
+          s.type = 'text/javascript';
+          s.defer = true;
+          s.src = urls[i];
+          var x = document.getElementsByTagName('script')[0];
+          x.parentNode.insertBefore(s, x);
+      };
+    };
+      if(window.attachEvent) {
+        window.attachEvent('onload',deferLoad);
+      } else {
+        window.addEventListener('load',deferLoad, false);
+      }
+    })();
+  </script>
 
   <script type="text/javascript">
     if (window.MSInputMethodContext && document.documentMode) {
