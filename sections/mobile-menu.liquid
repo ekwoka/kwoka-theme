@@ -1,17 +1,37 @@
-<nav class="fixed top-0 bottom-0 left-0 z-20 w-5/6 h-screen pt-12 pl-12 pr-8 border-r shadow-2xl bg-gray-50
+<noscript>
+    <style>
+        #mobileMenu:target {
+	      --tw-translate-x: 0px;
+        }
+
+        #mobileMenu {
+          display: block !important;
+          --tw-translate-x: -100%;
+          transition-property: all;
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          transition-duration: 150ms;
+          transition-duration: 500ms;
+          transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+        }
+    </style>
+</noscript>
+
+<nav id="mobileMenu" class="fixed top-0 bottom-0 left-0 z-20 w-5/6 h-screen pt-12 pl-12 pr-8 border-r shadow-2xl bg-gray-50 transform
             {%- if section.settings.glass %} bg-opacity-60 backdrop-filter backdrop-blur border-opacity-20 md:hidden
-            {%- endif -%}" 
+            {%- endif -%}"
      x-show="menuOpen"
      style="display:none;"
-     x-transition:enter="transform transition-all duration-800 ease-out"
+     x-transition:enter="transition-all duration-500 ease-out"
      x-transition:enter-start="-translate-x-full"
-     x-transition:leave="transform transition-all duration-600 ease-in"
+     x-transition:leave="transition-all duration-300 ease-in"
      x-transition:leave-end="-translate-x-full"
      @click.away="menuOpen = false">
 
-     <button class="absolute top-0 right-0 p-8" @click="menuOpen = false">
+    <a href="#">
+     <button class="absolute top-0 right-0 p-8" @click.prevent="menuOpen = false">
         <svg class="block w-4 h-4 mx-auto icon"><use xlink:href="#icon-close"></use></svg>
-     </button>
+    </button>
+    </a>
     
     </nav>
 
