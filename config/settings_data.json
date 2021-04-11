@@ -398,7 +398,7 @@
         "header": {
           "type": "header",
           "settings": {
-            "logo_max_width": 135,
+            "logo_max_width": 120,
             "main_linklist": "main-menu",
             "message": true,
             "color_bg": "#162950",
