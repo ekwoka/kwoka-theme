@@ -29,6 +29,15 @@
   max-height: {{ img_max_h }};
 }
 {%- endif %}
+
+{% if section.settings.sticky == true -%}
+.header-sticky {
+  position: sticky;
+  top: 0;
+  z-index:15;
+}
+{% endif %}
+
 .relative {
 	position: relative;
 }
@@ -430,6 +439,12 @@
       "step": 10,
       "unit": "px",
       "default": 100
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky",
+      "label": "Sticky Header",
+      "default": false
     },
     {
       "type": "link_list",
