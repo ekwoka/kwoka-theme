@@ -25,7 +25,7 @@
 .headerLogo-image {
   width: {{ img_w }};
   height: {{ img_h }};
-  max-width: {{ img_max_w }};
+  max-width: {{ img_max_w }}vw;
   max-height: {{ img_max_h }};
 }
 {%- endif %}
@@ -273,7 +273,7 @@
             </h1>
           {%- when 'img' -%}
             {%- assign img_url = section.settings.logoImg | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-            <img class="max-w-full mx-auto headerLogo-image lazyload js"
+            <img class="mx-auto headerLogo-image lazyload js"
                  src="{{ section.settings.logoImg | img_url: '100x' }}"
                  data-src="{{ img_url }}"
                  data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
