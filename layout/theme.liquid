@@ -91,6 +91,10 @@
 
   <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}" type="text/css" media="print" onload="this.media='all';onLoadStylesheet()">
   <link rel="stylesheet" href="{{ 'tailwind.css' | asset_url }}" type="text/css" media="print" onload="this.media='all';onLoadTailwind()">
+  <noscript>
+      {{ 'theme.css' | asset_url | stylesheet_tag }}
+      {{ 'tailwind.css' | asset_url | stylesheet_tag }}
+  </noscript>
 
   <style>
     {{ header_font | font_face: font_display: 'swap' }}
@@ -208,6 +212,13 @@
 </head>
 
 <body class="template-{{ request.page_type | handle }}" x-data="themeAlpine()">
+  <noscript>
+    <style>
+      .js {
+        display: none;
+      }
+    </style>
+  </noscript>
 
   {%- comment -%} These render code for all on-page SVG icons, as well as the core model for alpineJS to manage the template.{%- endcomment -%}
   {% render 'alpinescript' %}
