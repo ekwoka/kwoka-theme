@@ -14,7 +14,8 @@
     "build:prod": "run-s css:build deploy:prod",
     "watch:dev": "run-p init:dev css:watch",
     "css:header": "NODE_ENV=production postcss assets/tailwind.pre.css --o assets/header.css --verbose",
-    "reset:dev": "run-s download:dev build:dev"
+    "reset:dev": "run-s download:dev build:dev",
+    "open:dev": "theme open -e development & theme open -e development -E"
   },
   "repository": {
     "type": "git",
