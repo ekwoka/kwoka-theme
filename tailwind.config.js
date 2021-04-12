@@ -18,6 +18,7 @@ module.exports = {
     extend: {
       colors: {
         truegray: colors.trueGray,
+        primary: colors.blue,
       },
       margin: {
       },
