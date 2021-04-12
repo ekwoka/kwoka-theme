@@ -32,8 +32,58 @@
         <svg class="block w-4 h-4 mx-auto icon"><use xlink:href="#icon-close"></use></svg>
     </button>
     </a>
-    
+    <nav class="flex flex-col items-stretch w-full">
+        <ul class="divide-y divide-opacity-75">
+            {%- for link in linklists[section.settings.primNav].links %}
+            <li >
+                <a href="{{ link.url }}" {%- if link.current %} aria-current="page"{%- endif -%}>
+                    <button class="w-full py-2 pl-8 pr-4 tracking-widest text-xl text-left {%- if link.active %} font-semibold{%- endif -%}">
+                        {{ link.title | escape }}
+                    </button>
+                </a>
+            </li>
+            {%- endfor %}
+        </ul>
     </nav>
+
+    <nav class="flex flex-col items-stretch w-full mt-16">
+        <ul>
+            {%- if section.settings.secNav %}
+            {%- for link in linklists[section.settings.secNav].links %}
+            <li>
+                <a href="{{ link.url }}" {%- if link.current %} aria-current="page"{%- endif -%}>
+                    <button class="w-full py-1 pl-8 pr-4 tracking-wide text-base text-left {%- if link.active %} font-semibold{%- endif -%}">
+                        {{ link.title | escape }}
+                    </button>
+                </a>
+            </li>
+            {%- endfor %}
+            {%- endif -%}
+            {%- if section.settings.phone != '' %}
+            <li>
+                <a href="tel:{{ section.settings.phone | escape }}">
+                    <button class="w-full py-1 pl-8 pr-4 tracking-wide text-base text-left {%- if link.active %} font-semibold{%- endif -%}">
+                        <svg class="absolute mr-2 transform -translate-x-full icon icon-phone"><use xlink:href="#icon-phone"></use></svg> {{ section.settings.phone | escape }}
+                    </button>
+                </a>
+            </li>
+            {% endif -%}
+            {%- if section.settings.email != '' %}
+            <li>
+                <a href="mailto:{{ section.settings.email | escape }}">
+                    <button class="w-full py-1 pl-8 pr-4 tracking-wide text-base text-left {%- if link.active %} font-semibold{%- endif -%}">
+                        <svg class="absolute mr-2 transform -translate-x-full icon icon-email"><use xlink:href="#icon-email"></use></svg> {{ section.settings.email | escape }}
+                    </button>
+                </a>
+            </li>
+            {% endif -%}
+        </ul>
+    </nav>
+    
+ 
+
+
+</div>
 
 {% schema %}
 {
@@ -44,6 +94,27 @@
             "id": "glass",
             "default": false,
             "label": "Transparent Menu Drawer"
+        },
+        {
+            "type": "link_list",
+            "id": "primNav",
+            "default": "main-menu",
+            "label": "Primary Navigation"
+        },
+        {
+            "type": "link_list",
+            "id": "secNav",
+            "label": "Secondary Navigation"
+        },
+        {
+            "type": "text",
+            "id": "phone",
+            "label": "Contact Phone Number"
+        },
+        {
+            "type": "text",
+            "id": "email",
+            "label": "Support Email"
         }
     ]
 }
