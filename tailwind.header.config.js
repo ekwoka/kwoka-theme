@@ -3,6 +3,9 @@ const colors = require('tailwindcss/colors')
 
 module.exports = {
   mode: 'jit',
+  corePlugins: {
+    preflight: false,
+  },
   purge: {
     mode: "all",
     content: ["./**/header.liquid"],
@@ -18,6 +21,8 @@ module.exports = {
     extend: {
       colors: {
         truegray: colors.trueGray,
+        primary: colors.blue,
+        secondary: colors.red,
       },
       margin: {
       },
