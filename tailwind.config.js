@@ -19,6 +19,7 @@ module.exports = {
       colors: {
         truegray: colors.trueGray,
         primary: colors.blue,
+        secondary: colors.red,
       },
       margin: {
       },
