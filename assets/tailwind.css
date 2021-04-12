@@ -794,13 +794,13 @@ select {
 .hidden {
 	display: none;
 }
-.h-8 {
-	height: 2rem;
-}
 .h-\[max-content\] {
 	height: -webkit-max-content;
 	height: -moz-max-content;
 	height: max-content;
+}
+.h-8 {
+	height: 2rem;
 }
 .h-screen {
 	height: 100vh;
@@ -829,14 +829,14 @@ select {
 .max-w-screen-lg {
 	max-width: 1024px;
 }
-.max-w-full {
-	max-width: 100%;
-}
 .flex-none {
 	flex: none;
 }
 .flex-auto {
 	flex: 1 1 auto;
+}
+.flex-shrink {
+	flex-shrink: 1;
 }
 .transform {
 	--tw-translate-x: 0;
