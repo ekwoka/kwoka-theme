@@ -950,6 +950,9 @@ select {
 .pr-4 {
 	padding-right: 1rem;
 }
+.pl-2 {
+	padding-left: 0.5rem;
+}
 .text-right {
 	text-align: right;
 }
