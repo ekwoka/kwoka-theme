@@ -18,10 +18,6 @@
         {%- assign base_font_bold_italic = base_font_bold | font_modify: 'style', 'italic' -%}
 
         <link rel="preload" href="{{ 'tailwind.css' | asset_url }}" as="style">
-        <link rel="preload" href="{{ 'theme.css' | asset_url }}" as="style">
-        <link rel="preload" as="font" href="{{ header_font | font_url }}" type="font/woff2" crossorigin>
-        <link rel="preload" as="font" href="{{ base_font | font_url }}" type="font/woff2" crossorigin>
-        <link rel="preload" as="font" href="{{ base_font_bold | font_url }}" type="font/woff2" crossorigin>
         <link rel="preload" href="{{ 'lazysizes.js' | asset_url }}" as="script">
 
         {%- if canonical_url != blank  -%}
@@ -92,8 +88,14 @@
   <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}" type="text/css" media="print" onload="this.media='all';onLoadStylesheet()">
   <link rel="stylesheet" href="{{ 'tailwind.css' | asset_url }}" type="text/css" media="print" onload="this.media='all';onLoadTailwind()">
   <noscript>
-      {{ 'theme.css' | asset_url | stylesheet_tag }}
-      {{ 'tailwind.css' | asset_url | stylesheet_tag }}
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+    {{ 'tailwind.css' | asset_url | stylesheet_tag }}
+
+    <style>
+      .js {
+        display: none;
+      }
+    </style>
   </noscript>
 
   <style>
@@ -168,34 +170,7 @@
     <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
   {%- endif -%}
 
-  <script src="{{ 'lazysizes.js' | asset_url }}" defer></script>
-
-  {%- comment -%}
-  <script src="{{ 'theme.js' | asset_url }}" defer></script>
-  <script src="{{ 'alpine.min.js' | asset_url }}" defer></script>
-  {%- endcomment -%}
-
-  <script>
-  (function() {
-    function deferLoad() {
-      var urls = ["{{ 'theme.js' | asset_url }}",
-                  "{{ 'alpine.min.js' | asset_url }}"];
-      for (var i = 0; i < urls.length; i++) {
-          var s = document.createElement('script');
-          s.type = 'text/javascript';
-          s.defer = true;
-          s.src = urls[i];
-          var x = document.getElementsByTagName('script')[0];
-          x.parentNode.insertBefore(s, x);
-      };
-    };
-      if(window.attachEvent) {
-        window.attachEvent('onload',deferLoad);
-      } else {
-        window.addEventListener('load',deferLoad, false);
-      }
-    })();
-  </script>
+  <script src="{{ 'lazysizes.js' | asset_url }}" async></script>
 
   <script type="text/javascript">
     if (window.MSInputMethodContext && document.documentMode) {
@@ -208,17 +183,12 @@
     }
   </script>
 
+  <link rel="preload" href="{{ 'theme.css' | asset_url }}" as="style">
+
   {{ content_for_header }}
 </head>
 
 <body class="template-{{ request.page_type | handle }}" x-data="themeAlpine()">
-  <noscript>
-    <style>
-      .js {
-        display: none;
-      }
-    </style>
-  </noscript>
 
   {%- comment -%} These render code for all on-page SVG icons, as well as the core model for alpineJS to manage the template.{%- endcomment -%}
   {% render 'alpinescript' %}
@@ -252,6 +222,9 @@
     <li id="a11y-refresh-page-message">{{ 'general.accessibility.refresh_page' | t }}</li>
     <li id="a11y-selection-message">{{ 'general.accessibility.selection_help' | t }}</li>
   </ul>
+
+  <script src="{{ 'theme.js' | asset_url }}" async></script>
+  <script src="{{ 'alpine.min.js' | asset_url }}" async></script>
 </body>
 </html> 
     </head>
