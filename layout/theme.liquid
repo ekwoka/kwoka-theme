@@ -69,19 +69,12 @@
       performance.mark('debut:stylesheet_loaded.end');
       performance.measure('debut:stylesheet_loaded', 'debut:stylesheet_loaded.start', 'debut:stylesheet_loaded.end');
 
-      var url = "{{ 'theme.css' | asset_url }}";
-      var link = document.querySelector('link[href="' + url + '"]');
-      link.loaded = true;
-      link.dispatchEvent(new Event('load'));
     }
     function onLoadTailwind() {
       performance.mark('tailwind:stylesheet_loaded.end');
       performance.measure('tailwind:stylesheet_loaded', 'tailwind:stylesheet_loaded.start', 'tailwind:stylesheet_loaded.end');
 
-      var url = "{{ 'tailwind.css' | asset_url }}";
-      var link = document.querySelector('link[href="' + url + '"]');
-      link.loaded = true;
-      link.dispatchEvent(new Event('load'));
+
     }
   </script>
 
@@ -223,8 +216,8 @@
     <li id="a11y-selection-message">{{ 'general.accessibility.selection_help' | t }}</li>
   </ul>
 
-  <script src="{{ 'theme.js' | asset_url }}" async></script>
-  <script src="{{ 'alpine.min.js' | asset_url }}" async></script>
+  <script src="{{ 'theme.js' | asset_url }}" async onload="performance.mark('debut:script_loaded.end');"></script>
+  <script src="{{ 'alpine.min.js' | asset_url }}" async onload="performance.mark('alpine:script_loaded.end');"></script>
 </body>
 </html> 
     </head>
