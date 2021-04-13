@@ -4,10 +4,11 @@ const colors = require('tailwindcss/colors')
 module.exports = {
   mode: 'jit',
   corePlugins: {
-    preflight: false,
   },
   purge: {
+    enable: "true",
     mode: "all",
+    preserveHtmlElements: "false",
     content: ["./**/header.liquid"],
     options: {
       whitelist: [],
