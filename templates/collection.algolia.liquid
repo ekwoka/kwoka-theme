@@ -1,0 +1,44 @@
+<div x-data="data()" x-init="searchInit()">
+  
+  <input type="text" x-model="query" x-on:input.debounce.400ms="searchInit()">
+  
+  <div class="grid w-full grid-flow-row grid-cols-2 gap-1 mx-auto md:w-3/4 md:grid-cols-3">
+  <template x-for="(product, index) in response" :key="product.id">
+    <div class="shadow-lg">
+      <span x-html="product._highlightResult.title.value"></span></div>
+  </template>
+</div>
+
+
+<script>
+
+function data() {
+  return {
+    algoliaAppId: 'EH3YJ801HX',
+    algoliaApiKey: 'f8159a4250837a9c47b0abff0ae444b3',
+    get formBody(){ 
+      return `{"requests":[{"indexName":"shopify_products","params":"query=${encodeURIComponent(this.query)}&${this.highlightTags}&facets=%5B%5D&tagFilters="}]}`},
+    query: 'adidas',
+    response: [],
+    highlightClass: 'bg-blue-200',
+    get highlightTags(){ return `highlightPreTag=${encodeURIComponent(`<span class=${this.highlightClass}>`)}&highlightPostTag=${encodeURIComponent(`</span>`)}`},
+    searchInit() {
+      
+            const host = `https://${this.algoliaAppId}-dsn.algolia.net`;
+      const url = `${host}/1/indexes/*/queries?x-algolia-api-key=${this.algoliaApiKey}&x-algolia-application-id=${this.algoliaAppId}`;
+
+      fetch(url, {
+        headers: {
+          'X-Algolia-Application-Id': window.algoliaAppId,
+          'X-Algolia-API-Key': window.algoliaApiKey,
+        },
+        body: this.formBody,
+        method: "post",
+      }).then(response => response = response.json()).then(data => {this.response = data.results[0].hits});
+      
+      
+    }
+  }
+}
+</script>
+
