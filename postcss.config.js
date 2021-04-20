@@ -13,7 +13,7 @@ module.exports = {
         require(`autoprefixer`),
       ]
       : []),
-      ...(process.env.NODE_ENV === "header"
+      ...(process.env.NODE_ENV === "critical"
       ? [
         require(`tailwindcss`)(`./tailwind.header.config.js`),
         require(`autoprefixer`),

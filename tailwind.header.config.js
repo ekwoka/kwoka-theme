@@ -9,7 +9,7 @@ module.exports = {
     enable: "true",
     mode: "all",
     preserveHtmlElements: "false",
-    content: ["./**/header.liquid"],
+    content: ["./**/header.liquid","./**/mobile-menu.liquid","./**/cart-drawer.liquid"],
     options: {
       whitelist: [],
     },

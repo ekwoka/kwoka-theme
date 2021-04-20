@@ -78,6 +78,10 @@
     }
   </script>
 
+  <style>
+    {%- render 'critical-css' %}
+  </style>
+
   <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}" type="text/css" media="print" onload="this.media='all';onLoadStylesheet()">
   <link rel="stylesheet" href="{{ 'tailwind.css' | asset_url }}" type="text/css" media="print" onload="this.media='all';onLoadTailwind()">
   <noscript>
