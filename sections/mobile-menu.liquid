@@ -19,22 +19,22 @@
 
 <div class="fixed top-0 right-0 w-1/6 h-screen bg-black bg-opacity-40 backdrop-filter backdrop-blur-sm z-[15] md:hidden transform"
      x-show="menuOpen"
-     style="display: none;"
      x-transition:enter="transition-all duration-500 ease-out"
-     x-transition:enter-start="w-full bg-opacity-0 backdrop-blur-0"
+     x-transition:enter-start="!w-full !bg-opacity-0 !backdrop-blur-0"
      x-transition:leave="transition-all duration-300 ease-in"
-     x-transition:leave-end="w-full bg-opacity-0 backdrop-blur-0"></div>
+     x-transition:leave-end="!w-full !bg-opacity-0 !backdrop-blur-0"
+     x-cloak></div>
 
 <div id="mobileMenu" class="fixed top-0 bottom-0 left-0 z-20 w-5/6 h-screen pt-20 px-4 border-r shadow-2xl bg-gray-50 transform overflow-y-scroll
-            {%- if section.settings.glass %} bg-opacity-60 backdrop-filter backdrop-blur border-opacity-20 md:hidden
+            {%- if section.settings.glass %} bg-opacity-60 backdrop-filter backdrop-blur border-white border-opacity-20 md:hidden
             {%- endif -%}"
      x-show="menuOpen"
-     style="display:none;"
      x-transition:enter="transition-all duration-500 ease-out"
-     x-transition:enter-start="-translate-x-full"
+     x-transition:enter-start="!-translate-x-full"
      x-transition:leave="transition-all duration-300 ease-in"
-     x-transition:leave-end="-translate-x-full"
-     @click.away="menuOpen = false">
+     x-transition:leave-end="!-translate-x-full"
+     @click.away="menuOpen = false"
+     x-cloak>
 
     <a href="#">
      <button class="absolute top-0 right-0 p-8" @click.prevent="menuOpen = false">
