@@ -197,9 +197,13 @@
     {% include 'cart-popup' %}
   {%- endif -%}
 
-  {% section 'header' %}
+  {%- section 'header' -%}
 
-  {% section 'mobile-menu' -%}
+  {%- section 'mobile-menu' -%}
+
+  {%- if settings.cartDrawer == true -%}
+    {% section 'cart-drawer' %}
+  {%- endif -%}
 
   <div class="page-container drawer-page-content" id="PageContainer">
 

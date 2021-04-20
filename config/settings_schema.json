@@ -8,6 +8,21 @@
     "theme_support_url": "https:\/\/thekwoka.net\/"
   },
   {
+    "name": "Layout Options",
+    "settings":[
+      {
+        "type": "header",
+        "content": "Modules"
+      },
+      {
+        "type":"checkbox",
+        "default":true,
+        "id":"cartDrawer",
+        "label":"Use Cart Drawer"
+      }
+    ]
+  },
+  {
     "name": {
       "cs": "Barvy",
       "da": "Farver",
