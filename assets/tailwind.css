@@ -1148,14 +1148,6 @@ html {
 	box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
-.group:focus .group-focus\:rounded-lg {
-	border-radius: 0.5rem;
-}
-
-.group:focus .group-focus\:rounded-none {
-	border-radius: 0px;
-}
-
 @media (min-width: 768px) {
 
 	.md\:order-first {
