@@ -39,7 +39,11 @@ module.exports = {
       letterSpacing: ['dark']
     },
   },
-  variants: {},
+  variants: {
+    extend: {
+      borderRadius: ['group-focus'],
+    }
+  },
   plugins: [
     require("@tailwindcss/typography"),
     require("@tailwindcss/forms")

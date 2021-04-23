@@ -4,7 +4,7 @@
   "description": "A Shopify Theme Built on AlpineJS and TailwindCSS",
   "scripts": {
     "css:build": "NODE_ENV=production postcss assets/tailwind.pre.css --o assets/tailwind.css --verbose",
-    "css:critical": "NODE_ENV=critical postcss assets/tailwind.critical.pre.css --o snippets/critical-css.liquid --verbose",
+    "css:critical": "NODE_ENV=critical TAILWIND_MODE=build postcss assets/tailwind.critical.pre.css --o snippets/critical-css.liquid --verbose",
     "css:fulldev": "postcss assets/tailwind.pre.css --o assets/tailwind.css --verbose",
     "css:watch": "NODE_ENV=development TAILWIND_MODE=watch postcss assets/tailwind.pre.css --o assets/tailwind.css --verbose -w",
     "sync:dev": "browser-sync start --proxy 'https://kwoka-test-theme.myshopify.com' --files 'reload.config.js' --reload-delay 2000 --config bs.config.js",
