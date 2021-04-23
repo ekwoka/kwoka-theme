@@ -1,0 +1,30 @@
+{%- comment -%}
+    Only 1 Cart Drawer should be rendered in the theme, particularly as a block inside the 'header' section.
+
+        settings: Object containing all settings for this snippet.
+
+    Usage: {%- render 'cart-drawer' , settings: settingsobj -%}
+{%- endcomment -%}
+
+
+<!-- cart-drawer.liquid.start -->
+
+<div class="fixed top-0 left-0 w-1/6 h-screen bg-black bg-opacity-40 backdrop-filter backdrop-blur-sm z-[15] md:w-2/3 transform"
+     x-show="cartOpen"
+     x-transition:enter="transition-all duration-500 ease-out"
+     x-transition:enter-start="!w-full !bg-opacity-0 !backdrop-blur-0"
+     x-transition:leave="transition-all duration-300 ease-in"
+     x-transition:leave-end="!w-full !bg-opacity-0 !backdrop-blur-0"
+     x-cloak></div>
+
+<div class="fixed top-0 right-0 w-5/6 md:w-1/3 h-screen bg-gray-50 transform overflow-y-auto z-20 pt-20 border-l shadow-2xl px-4 
+            {%- if settings.glass %} bg-opacity-60 backdrop-filter backdrop-blur border-white border-opacity-20{%- endif -%}"
+    x-show="cartOpen"
+    x-transition:enter="transition-all duration-500 ease-out"
+    x-transition:enter-start="!translate-x-full"
+    x-transition:leave="transition-all duration-300 ease-in"
+    x-transition:leave-end="!translate-x-full"
+    @click.away="cartOpen = false"
+    x-cloak></div>
+
+<!-- cart-drawer.liquid.end -->

@@ -1,5 +1,12 @@
 <!-- header.liquid.start -->
 
+{%- assign cartDrawer = false -%}
+{%- for block in section.blocks -%}
+  {%- if block.type == 'cart' -%}
+    {%- assign cartDrawer = true -%}
+  {%- endif -%}
+{%- endfor -%}
+
 {% if section.settings.message %}
   <style>
     {% if section.settings.logo != blank %}
@@ -15,7 +22,6 @@
     {% endif %}
   </style>
 {% endif %}
-
 
 <style>
 {%- if section.settings.logoType == 'img' and section.settings.logoImg -%}
@@ -123,20 +129,42 @@
       </nav>
   
       <div class="flex-none order-last w-20 text-center md:flex-auto">
-        {%- if settings.cartDrawer == false -%}
+
+        {%- if cartDrawer == true -%}
+          <noscript>
+        {%- endif -%}
           <a href="{{ routes.cart_url }}">
-        {%- endif -%}
-        <button class="flex flex-col px-6 py-6 mx-auto md:flex-row focus:ring-0" {%- if settings.cartDrawer %} @click="cartOpen = true"{%- endif -%}>
-          <svg class="flex-none order-1 block w-8 h-8 mx-auto md:w-6 md:ml-2 md:h-6 md:order-2 icon md:inline-block"><use xlink:href="#icon-cart"></use></svg>
-          <span class="flex-none order-2 block mx-auto md:order-1 md:inline-block">Cart</span>
-        </button>
-        {%- if settings.cartDrawer == false -%}
+            <button class="flex flex-col px-6 py-6 mx-auto md:flex-row focus:ring-0">
+              <svg class="flex-none order-1 block w-8 h-8 mx-auto md:w-6 md:ml-2 md:h-6 md:order-2 icon md:inline-block"><use xlink:href="#icon-cart"></use></svg>
+              <span class="flex-none order-2 block mx-auto md:order-1 md:inline-block">Cart</span>
+            </button>
           </a>
+        {%- if cartDrawer == true -%}
+          </noscript>
         {%- endif -%}
+        
+
+        {%- if cartDrawer == true -%}
+          <button class="flex flex-col px-6 py-6 mx-auto md:flex-row focus:ring-0 js" @click="cartOpen = true">
+            <svg class="flex-none order-1 block w-8 h-8 mx-auto md:w-6 md:ml-2 md:h-6 md:order-2 icon md:inline-block"><use xlink:href="#icon-cart"></use></svg>
+            <span class="flex-none order-2 block mx-auto md:order-1 md:inline-block">Cart</span>
+          </button>
+        {%- endif -%}
+
       </div>
     </div>
   </header>
 </div>
+
+{%- for block in section.blocks -%}
+<!-- {{ block.type }} - {{ block.id }} -->
+  {%- case block.type -%}
+    {%- when 'menu' -%}
+      {%- render 'mobile-menu', settings: block.settings -%}
+    {%- when 'cart' -%}
+      {%- render 'cart-drawer', settings: block.settings -%}
+  {%- endcase -%}
+{%- endfor -%}
 
 <script type="application/ld+json">
 {
@@ -206,7 +234,12 @@
     "zh-TW": "標頭"
   },
   "class": "header-sticky",
+  "max_blocks": 2,
   "settings": [
+    {
+      "type": "paragraph",
+      "content": "A Mobile Menu Drawer Block is Required to have the menu show on Mobile."
+    },
     {
       "type": "header",
       "content": "Header Logo"
@@ -547,6 +580,116 @@
       },
       "default": "#ffffff"
     }
-  ]
+  ],
+  "blocks": [
+    {
+      "name": "Mobile Menu Drawer",
+      "type": "menu",
+      "limit": 1,
+      "settings": [
+        {
+            "type": "checkbox",
+            "id": "glass",
+            "default": false,
+            "label": "Transparent Menu Drawer"
+        },
+        {
+            "type": "header",
+            "content": "Search Bar"
+        },
+        {
+            "type": "checkbox",
+            "id": "search",
+            "default": true,
+            "label": "Provide Search Bar"
+        },
+        {
+            "type": "text",
+            "id": "placeholder",
+            "default": "Enter Search Terms",
+            "label": "Searchbox Placeholder Text"
+        },
+        {
+            "type": "link_list",
+            "id": "primNav",
+            "default": "main-menu",
+            "label": "Primary Navigation"
+        },
+        {
+            "type": "link_list",
+            "id": "secNav",
+            "label": "Secondary Navigation"
+        },
+        {
+            "type": "text",
+            "id": "phone",
+            "label": "Contact Phone Number"
+        },
+        {
+            "type": "text",
+            "id": "email",
+            "label": "Support Email"
+        }
+      ]
+    },
+    {
+      "name": "Cart Drawer",
+      "type": "cart",
+      "limit": 1,
+      "settings": [
+          {
+              "type": "paragraph",
+              "content": "The Cart Drawer requires that 'Use Cart Drawer' be toggled to true in the Theme Settings > Layout Options. With that toggled false, the cart drawer will not be used."
+          },
+          {
+              "type": "checkbox",
+              "id": "glass",
+              "label": "Transparent Background",
+              "default": false
+          },
+          {
+              "type": "header",
+              "content": "Free Shipping Threshold",
+              "info": "This Free Shipping Threshold is only for indicating to users when they can qualify for free shipping. Free shipping at price thresholds needs to be implemented properly in Shopify's Shipping settings to actually offer free shipping."
+          },
+          {
+              "type": "checkbox",
+              "id": "freeShippingThreshold",
+              "label": "Show Free Shipping Threshold Information",
+              "default": true
+          },
+          {
+              "type": "number",
+              "id": "priceThreshold",
+              "label": "Cart Value at which Free Shipping Applies",
+              "default": 40,
+              "info": "Numeric Value without currency marker. Whole Numbers as Decimals allowed."
+          },
+          {
+              "type": "number",
+              "id": "estimatedShipping",
+              "label": "Estimated Shipping",
+              "default": 5,
+              "info": "Shipping Value Customer can expect to pay if free shipping threshold is not met"
+          }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "menu",
+        "settings": {
+          "glass": false
+        }
+      },
+      {
+        "type": "cart",
+        "settings": {
+          "glass": false
+        }
+      }
+    ]
+  }
 }
 {% endschema %}
