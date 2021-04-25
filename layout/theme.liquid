@@ -185,7 +185,7 @@
   {{ content_for_header }}
 </head>
 
-<body class="template-{{ request.page_type | handle }}" x-data="themeAlpine()">
+<body class="template-{{ request.page_type | handle }}" x-data="themeAlpine()" x-init="alpineInit()">
 
   {%- comment -%} These render code for all on-page SVG icons, as well as the core model for alpineJS to manage the template.{%- endcomment -%}
   {% render 'alpinescript' %}

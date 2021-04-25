@@ -145,9 +145,12 @@
         
 
         {%- if cartDrawer == true -%}
-          <button class="flex flex-col px-6 py-6 mx-auto md:flex-row focus:ring-0 js" @click="cartOpen = true">
+          <button class="relative flex flex-col px-6 py-6 mx-auto md:flex-row focus:ring-0 js" @click="cartOpen = true">
             <svg class="flex-none order-1 block w-8 h-8 mx-auto md:w-6 md:ml-2 md:h-6 md:order-2 icon md:inline-block"><use xlink:href="#icon-cart"></use></svg>
             <span class="flex-none order-2 block mx-auto md:order-1 md:inline-block">Cart</span>
+            <div x-show="cart.items.length >=1" 
+              class="absolute p-[0.4rem] bg-red-700 rounded-full top-4 right-4 md:top-5 md:right-5 md:p-[0.35rem]"
+              x-cloak></div>
           </button>
         {%- endif -%}
 

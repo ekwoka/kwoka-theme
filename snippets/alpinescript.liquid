@@ -3,11 +3,61 @@
         return {
             menuOpen: false,
             cartOpen: false,
-            cartContents: [],
+            cart: {
+                "items": [],
+            },
+            cartMessage: "Successfully Added to Cart",
+            productAdded: true,
+            storeUrl: "kwoka-test-theme.myshopify.com",
+            get discountCode() {
+                return getCookie("discount_code");
+            },
+            alpineInit(){
+                this.fetchCart();
+            },
             fetchCart(){
-
+                fetch(`https://${this.storeUrl}/cart.js`).then(response => response = response.json()).then(data => {this.cart = data});
+            },
+            dataImg(url){
+                if (url.includes(".jpg")){
+                    return url.replace(".jpg","_{width}x.jpg");
+                } else if (url.includes(".png")){
+                    return url.replace(".png","_{width}x.png");
+                } else {
+                    return url;
+                };
             },
 
         }
     };
+{%- comment -%}Global Functions{%- endcomment -%}
+
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "null";
+}
+
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  console.log('Setting Cookie: ' + cname + '\nto:' + expires);
+}
+
+
+
 </script>
+
