@@ -20,6 +20,7 @@ module.exports = {
         truegray: colors.trueGray,
         primary: colors.blue,
         secondary: colors.red,
+        cta: colors.green
       },
       margin: {
       },
@@ -30,6 +31,10 @@ module.exports = {
       height: {
       },
       width: {},
+      maxWidth: {
+        '1/4': '25%',
+        '1/2': '50%'
+      },
       lineHeight: {
       },
       letterSpacing: ['dark']

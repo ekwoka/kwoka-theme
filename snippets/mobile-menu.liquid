@@ -53,7 +53,7 @@
 
     {%- if settings.search %}
     <form action="{{ routes.search_url }}" method="get" role="search">
-        <div class="flex w-full mb-4 rounded-r-sm ring-1 ring-gray-200 focus-within:ring-2 focus-within:ring-green-500">
+        <div class="flex w-full mb-4 rounded-r-sm ring-1 ring-gray-200 focus-within:ring-2 focus-within:ring-cta-500">
             <input name="q"
                 role="combobox"
                 aria-autocomplete="list"
@@ -68,7 +68,7 @@
                 placeholder="{{ settings.placeholder }}"></input>
             <button type="submit" 
                 data-search-form-submit 
-                class="flex-auto w-1/4 min-h-full text-white bg-green-500 rounded-sm">
+                class="flex-auto w-1/4 min-h-full text-white rounded-sm bg-cta-500">
                     Search
             </button>
         </div>
