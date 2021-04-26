@@ -165,7 +165,7 @@
     {%- when 'menu' -%}
       {%- render 'mobile-menu', settings: block.settings -%}
     {%- when 'cart' -%}
-      {%- render 'cart-drawer', settings: block.settings -%}
+      {%- render 'cart-drawer', block.settings: block.settings -%}
   {%- endcase -%}
 {%- endfor -%}
 
@@ -672,8 +672,8 @@
               "type": "number",
               "id": "estimatedShipping",
               "label": "Estimated Shipping",
-              "default": 5,
-              "info": "Shipping Value Customer can expect to pay if free shipping threshold is not met"
+              "default": 500,
+              "info": "Shipping Value Customer can expect to pay if free shipping threshold is not met. Present without decimal. Example for $5: '500'"
           }
       ]
     }

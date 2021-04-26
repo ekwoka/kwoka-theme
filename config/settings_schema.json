@@ -12,7 +12,50 @@
     "settings":[
       {
         "type": "header",
-        "content": "Modules"
+        "content": "Free Shipping Threshold"
+      },
+      {
+        "type": "paragraph",
+        "content": "Use these settings to properly display your free shipping threshold sitewide."
+      },
+      {
+        "type": "checkbox",
+        "label": "Display Free Shipping Threshold",
+        "id": "freeShipping",
+        "default": false,
+        "info": "Free shipping threshold needs to be added in shop shipping settings to actually provide free shipping"
+      },
+      {
+        "type": "number",
+        "label": "Estimated Shipping",
+        "id": "estimatedShipping",
+        "info": "An average shipping cost presented without a decimal. Example for $5: '500'",
+        "default":500
+      }
+
+    ]
+  },
+  {
+    "name": "Discount Codes",
+    "settings":[
+      {
+        "type": "header",
+        "content": "Sitewide Discount Display"
+      },
+      {
+        "type":"paragraph",
+        "content":"These settings allow you to display discounts throughout the site based on discount codes. This will only work for discount codes applied via Shopify Discount Links or other automated Discount Codes."
+      },
+      {
+        "type": "checkbox",
+        "label": "Display Discounts Sitewide",
+        "id": "displayDiscounts"
+      },
+      {
+        "type": "textarea",
+        "info": "Enter Discounts as percentage off as a decimal. Separate discount code from percentage with a colon, separate different codes with a comma. No spaces. Example: 'discountcode1:0.1,discountcode2:0.25'",
+        "label": "Discount Codes",
+        "id":"discountCodes"
       }
     ]
   },

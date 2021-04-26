@@ -1,3 +1,6 @@
+
+
+
 <script>
     function themeAlpine(){
         return {
@@ -6,12 +9,25 @@
             cart: {
                 "items": [],
             },
-            cartMessage: "Successfully Added to Cart",
-            productAdded: true,
+            cartMessage: "Cart",
+            productAdded: false,
             storeUrl: "kwoka-test-theme.myshopify.com",
             get discountCode() {
                 return getCookie("discount_code");
             },
+            discounts: [
+                {%- if settings.displayDiscounts -%}
+                    {%- assign discounts = settings.discountCodes | split: "," -%}
+                    {%- for discount in discounts -%}
+                        {%- assign code = discount | split: ':' | first -%}
+                        {%- assign multiplier = discount | split: ':' | last %}
+                {
+                    "code":"{{code}}",
+                    "multiplier": {{multiplier}}
+                },
+                    {%- endfor -%}
+                {%- endif %}
+            ],
             alpineInit(){
                 this.fetchCart();
             },
@@ -27,6 +43,32 @@
                     return url;
                 };
             },
+            formatCurrency(price){
+                var formatter = new Intl.NumberFormat('en-US', {
+                  style: 'currency',
+                  currency: '{{cart.currency.iso_code}}',
+                });
+
+                return formatter.format(price/100);
+            },
+            discountPrice(price){
+                var discount = this.discounts.findIndex(x => x.code.toLowerCase() === this.discountCode.toLowerCase());
+                if (discount == -1){
+                    return "null";
+                } else {
+                    var newPrice = price*(1-this.discounts[discount].multiplier);
+                    return this.formatCurrency(newPrice);
+                };
+            },
+            savings(price){
+                var discount = this.discounts.findIndex(x => x.code.toLowerCase() === this.discountCode.toLowerCase());
+                if (discount == -1){
+                    return "null";
+                } else {
+                    var newPrice = price*this.discounts[discount].multiplier;
+                    return '-'+this.formatCurrency(newPrice);
+                };
+            }
 
         }
     };
