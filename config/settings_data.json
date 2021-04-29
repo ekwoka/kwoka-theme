@@ -229,9 +229,17 @@
           "color_bg": "#3a3a3a",
           "color_text": "#ffffff"
         }
+      },
+      "1619676305466de308": {
+        "type": "insta-collection",
+        "settings": {
+          "instamenu": "insta-menu",
+          "mobileOnly": true
+        }
       }
     },
     "content_for_index": [
+      "1619676305466de308",
       "hero-1",
       "feature-row",
       "feature-columns",

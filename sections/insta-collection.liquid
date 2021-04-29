@@ -1,0 +1,80 @@
+<!-- insta-collection.liquid start -->
+<div class="flex flex-row justify-between max-w-full px-4 overflow-y-auto flex-nowrap {%- if section.settings.mobileOnly %} md:hidden{%-endif-%}">
+    {%- for item in linklists[section.settings.instamenu].links -%}
+    {%- assign collection = item.object -%}
+    {%- if collection -%}
+        <a class="mx-2" href="{{ collection.url }}">
+            <button class="flex flex-col mx-auto">
+                <div class="p-1 rounded-full bg-gradient-to-tr from-yellow-500 to-indigo-700">
+                    <div class="p-1 bg-white rounded-full">
+                        <div class="relative p-8 mx-auto rounded-full">
+                            {%- assign imgurl = collection.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+                            <div class="absolute top-0 left-0 w-16 h-16 bg-gray-200 rounded-full animate-pulse"></div>
+                            <img 
+                                src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw"
+                                class="absolute top-0 left-0 object-cover w-16 h-16 rounded-full lazyload" 
+                                data-src="{{ imgurl }}" 
+                                data-sizes="auto"
+                                data-widths="[64, 128, 256, 512]"
+                                data-aspectratio="{{ collection.image.aspect_ratio }}"/>
+                            
+                        </div>
+                    </div>
+                </div>
+                <span class="mx-auto">{{ collection.title }}</span>
+            </button>
+        </a>
+    {%- endif -%}
+    {%- endfor -%}
+</div>
+
+<!-- insta-collection.liquid end -->
+
+
+{% schema %}
+{
+    "name": "Instagram Collection",
+    "settings": [
+        {
+            "type": "link_list",
+            "id": "instamenu",
+            "label": "Collection List",
+            "default": "main-menu"
+        },
+        {
+            "type": "checkbox",
+            "id": "mobileOnly",
+            "label": "Only Show On Mobile",
+            "default": true
+        }
+    ],
+    "presets": [
+        {
+            "category": {
+                "cs": "Kolekce",
+                "da": "Kollektion",
+                "de": "Kategorie",
+                "en": "Collection",
+                "es": "Colección",
+                "fi": "Kokoelma",
+                "fr": "Collection",
+                "it": "Collezione",
+                "ja": "コレクション",
+                "ko": "컬렉션",
+                "nb": "Samling",
+                "nl": "Collectie",
+                "pl": "Kolekcja",
+                "pt-BR": "Coleção",
+                "pt-PT": "Coleção",
+                "sv": "Produktserie",
+                "th": "คอลเลกชัน",
+                "tr": "Koleksiyon",
+                "vi": "Bộ sưu tập",
+                "zh-CN": "收藏",
+                "zh-TW": "商品系列"
+              },
+            "name":"Instagram Stories"
+        }
+    ]
+}
+{% endschema %}

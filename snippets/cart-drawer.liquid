@@ -80,7 +80,7 @@
             </div>
             <div class="w-full text-base text-right" x-cloak x-show="discountPrice(cart.items_subtotal_price) != 'null'">
                 <span class="font-normal text-gray-900">Total:</span>
-                <span class="pl-2 font-medium text-cta-600" x-text="discountPrice(cart.items_subtotal_price)+{{ settings.estimatedShipping }}"></span>
+                <span class="pl-2 font-medium text-cta-600" x-text="discountPrice(cart.items_subtotal_price)"></span>
             </div>
         </div>
     </template>
