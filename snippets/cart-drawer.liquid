@@ -58,9 +58,20 @@
                                 <span class="flex-auto text-center" x-text="option.value"></span>
                             </template>
                         </div>
+                        <div class="flex flex-row flex-none max-w-1/2 flex-nowrap focus-within:ring-2 ring-primary-500">
+                            <button class="flex-auto w-8 h-8 border border-gray-400 focus:outline-none" @click.prevent="index++;item.quantity--;updateCart(index,item.quantity)">-</button>
+                            <input type="number" 
+                                class="flex-none w-8 h-8 p-1 text-center border border-gray-400 appearance-none focus:border-gray-400"
+                                x-model="item.quantity"
+                                @input.debounce.400="if(item.quantity >= 1){index++;updateCart(index,item.quantity)}"/>
+                            <button class="flex-auto w-8 h-8 border border-gray-400 appearance-none focus:outline-none" @click.prevent="index++;item.quantity++;updateCart(index,item.quantity)">+</button>
+                        </div>
                         <div class="flex-auto w-1/2 max-w-full pt-2 text-base font-medium text-right divide-x min-w-max text-cta-600">
-                            <span x-text="formatCurrency(item.original_line_price)" :class="{'line-through text-gray-900 font-light': discountPrice(item.original_line_price) != 'null'}"></span>
-                            <span class="pl-2" x-show="discountPrice(item.original_line_price) != 'null'" x-text="discountPrice(item.original_line_price)" x-cloak></span>
+                            <span x-text="formatCurrency(item.original_price*item.quantity)"
+                                :class="{'line-through text-gray-900 font-light': discountPrice(item.original_price*item.quantity) != 'null'}"></span>
+                            <span class="pl-2" 
+                                x-show="discountPrice(item.original_line_price) != 'null'" 
+                                x-text="discountPrice(item.original_price*item.quantity)" x-cloak></span>
                         </div>
                     </div>
                     
@@ -74,13 +85,14 @@
                 <span class="font-normal text-gray-900">Discount:</span>
                 <span class="pl-2 font-medium text-cta-600" x-text="savings(cart.items_subtotal_price)"></span>
             </div>
-            <div class="w-full text-base text-right">
-                <span class="font-normal text-gray-900">Expected Shipping:</span>
-                <span class="pl-2 font-medium text-cta-600" x-text="formatCurrency({{ settings.estimatedShipping }})"></span>
-            </div>
-            <div class="w-full text-base text-right" x-cloak x-show="discountPrice(cart.items_subtotal_price) != 'null'">
+            <div class="w-full text-base text-right" x-cloak>
                 <span class="font-normal text-gray-900">Total:</span>
-                <span class="pl-2 font-medium text-cta-600" x-text="discountPrice(cart.items_subtotal_price)"></span>
+                <span class="pl-2 font-medium text-cta-600" 
+                    x-text="discountPrice(cart.items_subtotal_price)"
+                    x-show="discountPrice(cart.items_subtotal_price) != 'null'"></span>
+                <span class="pl-2 font-medium text-cta-600" 
+                    x-text="formatCurrency(cart.items_subtotal_price)"
+                    x-show="discountPrice(cart.items_subtotal_price) == 'null'"></span>
             </div>
         </div>
     </template>

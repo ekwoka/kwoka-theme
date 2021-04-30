@@ -34,6 +34,24 @@
             fetchCart(){
                 fetch(`https://${this.storeUrl}/cart.js`).then(response => response = response.json()).then(data => {this.cart = data});
             },
+            updateCart(line,quantity){
+                fetch(`https://${this.storeUrl}/cart/change.js`,
+                {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        'line': line,
+                        'quantity': quantity,
+                    })
+                }).then(response => {
+                    
+                    if (!response.ok) {
+                        this.fetchCart();
+                    };
+                    return response.json()}).then(data => {this.cart.items_subtotal_price = data.items_subtotal_price}).catch((error) => {this.fetchCart();console.log(error)});
+            },
             dataImg(url){
                 if (url.includes(".jpg")){
                     return url.replace(".jpg","_{width}x.jpg");
