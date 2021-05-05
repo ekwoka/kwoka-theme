@@ -52,6 +52,21 @@
                     };
                     return response.json()}).then(data => {this.cart.items_subtotal_price = data.items_subtotal_price}).catch((error) => {this.fetchCart();console.log(error)});
             },
+            addCart(index,id,quantity){
+                fetch(`https://${this.storeUrl}/cart/add.js`,
+                {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        'id': id,
+                        'quantity': quantity,
+                    })
+                }).then(response => {
+                    this.fetchCart();
+                    return response.json()});
+            },
             dataImg(url){
                 if (url.includes(".jpg")){
                     return url.replace(".jpg","_{width}x.jpg");

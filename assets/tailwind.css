@@ -1,4 +1,4 @@
-/*! tailwindcss v2.1.1 | MIT License | https://tailwindcss.com *//*! modern-normalize v1.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
+/*! tailwindcss v2.1.2 | MIT License | https://tailwindcss.com *//*! modern-normalize v1.1.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
 
 /*
 Document
@@ -10,8 +10,8 @@ Use a better box model (opinionated).
 */
 
 *,
-*::before,
-*::after {
+::before,
+::after {
 	box-sizing: border-box;
 }
 
@@ -19,7 +19,7 @@ Use a better box model (opinionated).
 Use a more readable tab size (opinionated).
 */
 
-:root {
+html {
 	-moz-tab-size: 4;
 	-o-tab-size: 4;
 	   tab-size: 4;
@@ -733,6 +733,18 @@ select {
 .fixed {
 	position: fixed;
 }
+.inset-\[-1rem\] {
+	top: -1rem;
+	right: -1rem;
+	bottom: -1rem;
+	left: -1rem;
+}
+.inset-8 {
+	top: 2rem;
+	right: 2rem;
+	bottom: 2rem;
+	left: 2rem;
+}
 .top-4 {
 	top: 1rem;
 }
@@ -747,6 +759,12 @@ select {
 }
 .right-0 {
 	right: 0px;
+}
+.-left-2 {
+	left: -0.5rem;
+}
+.right-2 {
+	right: 0.5rem;
 }
 .bottom-0 {
 	bottom: 0px;
@@ -782,6 +800,9 @@ select {
 }
 .mr-2 {
 	margin-right: 0.5rem;
+}
+.mr-4 {
+	margin-right: 1rem;
 }
 .mb-4 {
 	margin-bottom: 1rem;
@@ -953,11 +974,14 @@ select {
 .justify-between {
 	justify-content: space-between;
 }
+.justify-evenly {
+	justify-content: space-evenly;
+}
 .gap-1 {
 	gap: 0.25rem;
 }
-.gap-y-3 {
-	row-gap: 0.75rem;
+.gap-y-8 {
+	row-gap: 2rem;
 }
 .gap-x-2 {
 	-moz-column-gap: 0.5rem;
@@ -986,6 +1010,12 @@ select {
 }
 .rounded-full {
 	border-radius: 9999px;
+}
+.rounded-lg {
+	border-radius: 0.5rem;
+}
+.rounded {
+	border-radius: 0.25rem;
 }
 .rounded-sm {
 	border-radius: 0.125rem;
@@ -1024,6 +1054,9 @@ select {
 .border-opacity-20 {
 	--tw-border-opacity: 0.2;
 }
+.border-opacity-25 {
+	--tw-border-opacity: 0.25;
+}
 .bg-white {
 	--tw-bg-opacity: 1;
 	background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
@@ -1061,6 +1094,9 @@ select {
 .bg-opacity-60 {
 	--tw-bg-opacity: 0.6;
 }
+.bg-opacity-0 {
+	--tw-bg-opacity: 0;
+}
 .bg-gradient-to-tr {
 	background-image: linear-gradient(to top right, var(--tw-gradient-stops));
 }
@@ -1086,6 +1122,9 @@ select {
 }
 .p-8 {
 	padding: 2rem;
+}
+.p-2 {
+	padding: 0.5rem;
 }
 .px-2 {
 	padding-left: 0.5rem;
@@ -1114,10 +1153,6 @@ select {
 .py-1 {
 	padding-top: 0.25rem;
 	padding-bottom: 0.25rem;
-}
-.py-3 {
-	padding-top: 0.75rem;
-	padding-bottom: 0.75rem;
 }
 .pt-20 {
 	padding-top: 5rem;
@@ -1198,12 +1233,25 @@ select {
 	--tw-text-opacity: 1;
 	color: rgba(22, 163, 74, var(--tw-text-opacity));
 }
+.text-red-400 {
+	--tw-text-opacity: 1;
+	color: rgba(248, 113, 113, var(--tw-text-opacity));
+}
 .text-white {
 	--tw-text-opacity: 1;
 	color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
+.underline {
+	text-decoration: underline;
+}
 .line-through {
 	text-decoration: line-through;
+}
+.opacity-0 {
+	opacity: 0;
+}
+.opacity-100 {
+	opacity: 1;
 }
 .shadow-md {
 	--tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -1274,6 +1322,12 @@ select {
 }
 .duration-300 {
 	transition-duration: 300ms;
+}
+.duration-700 {
+	transition-duration: 700ms;
+}
+.duration-200 {
+	transition-duration: 200ms;
 }
 .ease-out {
 	transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
