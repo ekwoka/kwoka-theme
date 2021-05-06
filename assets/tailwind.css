@@ -939,6 +939,9 @@ select {
 	-webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 	        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+.cursor-pointer {
+	cursor: pointer;
+}
 .appearance-none {
 	-webkit-appearance: none;
 	   -moz-appearance: none;
@@ -1036,6 +1039,9 @@ select {
 .border-l {
 	border-left-width: 1px;
 }
+.border-t-2 {
+	border-top-width: 2px;
+}
 .border-r {
 	border-right-width: 1px;
 }
@@ -1080,6 +1086,10 @@ select {
 .bg-gray-50 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
+}
+.bg-cta-600 {
+	--tw-bg-opacity: 1;
+	background-color: rgba(22, 163, 74, var(--tw-bg-opacity));
 }
 .bg-cta-500 {
 	--tw-bg-opacity: 1;
@@ -1371,6 +1381,16 @@ input[type=number]::-webkit-outer-spin-button {
 .focus-within\:ring-cta-500:focus-within {
 	--tw-ring-opacity: 1;
 	--tw-ring-color: rgba(34, 197, 94, var(--tw-ring-opacity));
+}
+
+.hover\:bg-cta-800:hover {
+	--tw-bg-opacity: 1;
+	background-color: rgba(22, 101, 52, var(--tw-bg-opacity));
+}
+
+.hover\:shadow-inner:hover {
+	--tw-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .focus\:border-0:focus {

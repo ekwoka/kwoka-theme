@@ -5,7 +5,7 @@
     function themeAlpine(){
         return {
             menuOpen: false,
-            cartOpen: false,
+            cartOpen: true,
             cart: {
                 "items": [],
             },
@@ -28,6 +28,9 @@
                     {%- endfor -%}
                 {%- endif %}
             ],
+            get discountIndex(){
+                return this.discounts.findIndex(x => x.code.toLowerCase() === this.discountCode.toLowerCase())
+            },
             alpineInit(){
                 this.fetchCart();
             },
@@ -85,17 +88,19 @@
                 return formatter.format(price/100);
             },
             discountPrice(price){
-                var discount = this.discounts.findIndex(x => x.code.toLowerCase() === this.discountCode.toLowerCase());
-                if (discount == -1){
+                if (this.discountIndex == -1){
                     return "null";
                 } else {
                     var newPrice = price*(1-this.discounts[discount].multiplier);
                     return this.formatCurrency(newPrice);
                 };
             },
+            totalPrice(){
+                if(this.discountIndex == -1) return this.formatCurrency(this.cart.items_subtotal_price);
+                return this.discountPrice(this.cart.items_subtotal_price);
+            },
             savings(price){
-                var discount = this.discounts.findIndex(x => x.code.toLowerCase() === this.discountCode.toLowerCase());
-                if (discount == -1){
+                if (this.discountIndex == -1){
                     return "null";
                 } else {
                     var newPrice = price*this.discounts[discount].multiplier;

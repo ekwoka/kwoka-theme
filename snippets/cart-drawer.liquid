@@ -69,8 +69,8 @@
                         </div>
                         <div class="flex-auto w-1/2 max-w-full pt-2 text-base font-medium text-right divide-x min-w-max text-cta-600">
                             <button x-show="item.quantity != 0" class="absolute left-0 mr-4 text-red-400 underline" @click.prevent="index++;item.quantity = 0;updateCart(index,0)">remove</button>
-                            <span class="pl-2" :class="{'line-through text-gray-900 font-light': discountPrice(item.original_price*item.quantity) != 'null'}" x-text="formatCurrency(item.original_price*item.quantity)"></span>
-                            <span class="pl-2" x-cloak x-show="discountPrice(item.original_line_price) != 'null'" x-text="discountPrice(item.original_price*item.quantity)"></span>
+                            <span class="pl-2" :class="{'line-through text-gray-900 font-light': discountIndex != -1}" x-text="formatCurrency(item.original_price*item.quantity)"></span>
+                            <span class="pl-2" x-cloak x-show="discountIndex != -1" x-text="discountPrice(item.original_price*item.quantity)"></span>
                         </div>
                     </div>
                     <div class="absolute inset-[-1rem] -left-2 bg-opacity-0 backdrop-filter backdrop-blur-sm" x-show="item.quantity == 0" x-transition:enter="transition-all duration-700 duration-200"
@@ -90,17 +90,24 @@
                 <span class="font-normal text-gray-900">Subtotal:</span>
                 <span class="pl-2 font-medium text-cta-600" x-text="formatCurrency(cart.items_subtotal_price)"></span>
             </div>
-            <div class="w-full text-base text-right" x-cloak x-show="discountPrice(cart.items_subtotal_price) != 'null'">
+            <div class="w-full text-base text-right" x-cloak x-show="discountIndex != -1">
                 <span class="font-normal text-gray-900">Discount:</span>
                 <span class="pl-2 font-medium text-cta-600" x-text="savings(cart.items_subtotal_price)"></span>
             </div>
             <div class="w-full text-base text-right" x-cloak>
-                <span class="font-normal text-gray-900">Total:</span>
-                <span class="pl-2 font-medium text-cta-600" x-show="discountPrice(cart.items_subtotal_price) != 'null'" x-text="discountPrice(cart.items_subtotal_price)"></span>
-                <span class="pl-2 font-medium text-cta-600" x-show="discountPrice(cart.items_subtotal_price) == 'null'" x-text="formatCurrency(cart.items_subtotal_price)"></span>
+                <span class="font-normal text-gray-900">Estimated Total:</span>
+                <span class="pl-2 font-medium text-cta-600" x-text="totalPrice()"></span>
             </div>
         </div>
+
     </template>
+
+    <div class="w-full py-4 border-t-2" x-cloak x-show="cart.items.length >= 1">
+        <a href="/checkout"><button class="flex w-full py-4 text-center text-white rounded shadow-md bg-cta-600 justify-evenly hover:shadow-inner hover:bg-cta-800">
+            <span x-text="totalPrice()"></span><span class="pl-2 border-l">Proceed to Checkout</span><svg class="inline w-4 h-4 fill-current"><use xlink:href="#icon-right-arrow"></use></svg>
+        </button></a>
+    </div>
+    <div class="w-full py-4 text-center"><a href="" class="underline cursor-pointer">Continue Shopping</a></div>
 
 </div>
 
