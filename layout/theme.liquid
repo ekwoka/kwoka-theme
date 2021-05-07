@@ -220,6 +220,8 @@
 
   <script src="{{ 'theme.js' | asset_url }}" async onload="performance.mark('debut:script_loaded.end');"></script>
   <script src="{{ 'alpine.min.js' | asset_url }}" async onload="performance.mark('alpine:script_loaded.end');"></script>
+  
+  {%- if settings.hideExpressCheckouts -%}<script>document.cookie = "dynamic_checkout_shown_on_cart=1;Path=/;"</script>{%- endif -%}
 </body>
 </html> 
     </head>

@@ -31,6 +31,13 @@
         "id": "estimatedShipping",
         "info": "An average shipping cost presented without a decimal. Example for $5: '500'",
         "default":500
+      },
+      {
+        "type": "checkbox",
+        "label": "Hide Express Checkout Buttons in Checkout",
+        "id": "hideExpressCheckouts",
+        "info": "This will supress the Express Checkouts (Gpay, Applepay, Paypal, etc) in the First step of the Checkout, but they will still show in the Payment Step.",
+        "default":false
       }
 
     ]
