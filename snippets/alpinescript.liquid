@@ -26,6 +26,14 @@
                     {%- endfor -%}
                 {%- endif %}
             ],
+            get cartText(){
+                var lines = [];
+                lines.push({'label':'Subtotal','value':this.formatCurrency(this.cart.items_subtotal_price)});
+                if (this.discountIndex != -1) lines.push({'label':'Discount','value':this.savings(this.cart.items_subtotal_price)});
+                lines.push({'label':'Total','value':this.totalPrice()});
+
+                return lines;
+            },
             get discountIndex(){
                 return this.discounts.findIndex(x => x.code.toLowerCase() === this.discountCode.toLowerCase())
             },

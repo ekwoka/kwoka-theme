@@ -848,6 +848,9 @@ select {
 .h-4 {
 	height: 1rem;
 }
+.h-0 {
+	height: 0px;
+}
 .min-h-full {
 	min-height: 100%;
 }
@@ -863,11 +866,17 @@ select {
 .w-16 {
 	width: 4rem;
 }
+.w-1\/12 {
+	width: 8.333333%;
+}
 .w-1\/6 {
 	width: 16.666667%;
 }
 .\!w-full {
 	width: 100% !important;
+}
+.w-11\/12 {
+	width: 91.666667%;
 }
 .w-5\/6 {
 	width: 83.333333%;
@@ -883,6 +892,9 @@ select {
 }
 .w-3\/4 {
 	width: 75%;
+}
+.w-0 {
+	width: 0px;
 }
 .min-w-max {
 	min-width: -webkit-max-content;
@@ -1005,6 +1017,9 @@ select {
 }
 .overflow-y-auto {
 	overflow-y: auto;
+}
+.overflow-hidden {
+	overflow: hidden;
 }
 .truncate {
 	overflow: hidden;
@@ -1167,6 +1182,9 @@ select {
 .pt-20 {
 	padding-top: 5rem;
 }
+.pl-4 {
+	padding-left: 1rem;
+}
 .pt-2 {
 	padding-top: 0.5rem;
 }
@@ -1220,6 +1238,9 @@ select {
 }
 .italic {
 	font-style: italic;
+}
+.leading-8 {
+	line-height: 2rem;
 }
 .tracking-widest {
 	letter-spacing: 0.1em;
