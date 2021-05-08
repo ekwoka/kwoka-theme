@@ -8,6 +8,26 @@
             cartOpen: true,
             cart: {
                 "items": [],
+                "items_subtotal_price": 0,
+            },
+            get subtotalPrice(){
+                return this.cart.items_subtotal_price
+            },
+            get discountValue(){
+                if(this.discountIndex != -1) return this.subtotalPrice * (1- this.discounts[discountIndex].multiplier);
+                return 0;
+            },
+            shippingCost(showShippingThreshold){
+                if(this.totalPriceWithoutShipping >= this.themeSettings.freeShippingThreshold && showShippingThreshold) return 0;
+                return this.themeSettings.estimatedShipping; 
+            },
+            get totalPriceWithoutShipping(){
+                if(this.discountIndex != -1) return this.cart.items_subtotal_price;
+                return this.cart.items_subtotal_price - this.discountValue;
+            },
+            themeSettings: {
+                "freeShippingThreshold": {{ settings.freeShippingThreshold }},
+                "estimatedShipping": {{ settings.estimatedShipping }}
             },
             cartMessage: "Cart",
             productAdded: false,
@@ -26,13 +46,20 @@
                     {%- endfor -%}
                 {%- endif %}
             ],
-            get cartText(){
+            cartText(showEstimatedShipping,showShippingThreshold){
                 var lines = [];
-                lines.push({'label':'Subtotal','value':this.formatCurrency(this.cart.items_subtotal_price)});
-                if (this.discountIndex != -1) lines.push({'label':'Discount','value':this.savings(this.cart.items_subtotal_price)});
-                lines.push({'label':'Total','value':this.totalPrice()});
+                if(this.subtotalPrice == 0)return [{'label':'Total','value':this.formatCurrency(0)}];
+                if (this.discountIndex != -1 || showEstimatedShipping) lines.push({'label':'Subtotal','value':this.formatCurrency(this.subtotalPrice)});
+                if (this.discountIndex != -1) lines.push({'label':'Discount','value':this.formatCurrency(0-this.discountValue)});
+                if (showEstimatedShipping) lines.push({'label':'Estimated Shipping','value':this.formatCurrency(this.shippingCost(showShippingThreshold))});
+                lines.push({'label':'Total','value':this.totalPriceFormatted(showEstimatedShipping,showShippingThreshold)});
 
                 return lines;
+            },
+            get shippingThresholdMessage(){
+                var valueRemaining = this.themeSettings.freeShippingThreshold - this.totalPriceWithoutShipping;
+                if(valueRemaining <=0) return 'Congratulations, you qualify for FREE shipping!';
+                return `Add ${this.formatCurrency(valueRemaining)} to your cart to qualify for FREE Shipping`;
             },
             get discountIndex(){
                 return this.discounts.findIndex(x => x.code.toLowerCase() === this.discountCode.toLowerCase())
@@ -89,9 +116,9 @@
                 var newPrice = price*(1-this.discounts[this.discountIndex].multiplier);
                 return this.formatCurrency(newPrice);
             },
-            totalPrice(){
-                if(this.discountIndex == -1) return this.formatCurrency(this.cart.items_subtotal_price);
-                return this.discountPrice(this.cart.items_subtotal_price);
+            totalPriceFormatted(showEstimatedShipping,showShippingThreshold){
+                if(showEstimatedShipping) return this.formatCurrency(this.totalPriceWithoutShipping+this.shippingCost(showShippingThreshold));
+                return this.formatCurrency(this.totalPriceWithoutShipping);
             },
             savings(price){
                 if (this.discountIndex == -1) return "null";
