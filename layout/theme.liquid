@@ -87,7 +87,6 @@
   <noscript>
     {{ 'theme.css' | asset_url | stylesheet_tag }}
     {{ 'tailwind.css' | asset_url | stylesheet_tag }}
-
     <style>
       .js {
         display: none;
@@ -157,7 +156,7 @@
         predictiveSearchShowPrice: {{ settings.predictive_search_show_price | json }},
         predictiveSearchShowVendor: {{ settings.predictive_search_show_vendor | json }}
       },
-      stylesheet: "{{ 'theme.css' | asset_url }}"
+      stylesheet: "{{ 'tailwind.css' | asset_url }}"
     }
 
     document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
