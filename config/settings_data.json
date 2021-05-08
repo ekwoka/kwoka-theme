@@ -1,9 +1,10 @@
 {
   "current": {
-    "freeShipping": true,
-    "estimatedShipping": 4000,
+    "freeShippingThreshold": 15000,
+    "estimatedShipping": 500,
     "displayDiscounts": true,
     "discountCodes": "get10now:0.1,get50later:0.5,freeshit:0.99",
+    "freeShipping": true,
     "sections": {
       "hero-1": {
         "type": "hero",
@@ -205,10 +206,9 @@
           "header-1": {
             "type": "cart",
             "settings": {
-              "glass": false,
-              "freeShippingThreshold": true,
-              "priceThreshold": 40,
-              "estimatedShipping": 500
+              "glass": true,
+              "showShippingThreshold": true,
+              "showShipping": true
             }
           }
         },

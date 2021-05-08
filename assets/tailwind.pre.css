@@ -19,3 +19,18 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none; 
   margin: 0; 
 }
+
+progress.cartBar {
+  @apply appearance-none
+}
+progress.cartBar[value]::-webkit-progress-bar {
+  @apply bg-gray-50 bg-opacity-50 rounded-sm shadow-inner
+}
+progress.cartBar[value]::-webkit-progress-value {
+  @apply rounded-sm transition-all duration-[2500ms] ease-out bg-gradient-to-b from-truegray-400 to-truegray-700 bg-blend-luminosity bg-cta-600;
+  background-size: 35px 20px, 100% 100%, 100% 100%;
+}
+progress.cartBar[value]::-moz-progress-bar {
+  @apply rounded-sm transition-all duration-[2500ms] ease-out bg-gradient-to-b from-truegray-400 to-truegray-700 bg-blend-luminosity bg-cta-600;
+  background-size: 35px 20px, 100% 100%, 100% 100%;
+}
