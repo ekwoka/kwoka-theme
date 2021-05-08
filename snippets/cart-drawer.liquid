@@ -1,3 +1,5 @@
+<!-- cart-drawer.liquid.start -->
+
 {%- comment -%}
     Only 1 Cart Drawer should be rendered in the theme, particularly as a block inside the 'header' section.
 
@@ -5,9 +7,6 @@
 
     Usage: {%- render 'cart-drawer' , settings: settingsobj -%}
 {%- endcomment -%}
-
-
-<!-- cart-drawer.liquid.start -->
 
 <div class="fixed top-0 left-0 h-screen bg-black bg-opacity-40 backdrop-filter backdrop-blur-sm z-[15] md:w-3/5 transform"
      :class="{'w-1/12':discountIndex != -1,'w-1/6':discountIndex === -1}"
@@ -18,8 +17,8 @@
      x-transition:leave-end="!w-full !bg-opacity-0 !backdrop-blur-0"
      x-cloak></div>
 
-<div class="fixed top-0 right-0 md:w-2/5 h-screen bg-gray-50 transform overflow-y-auto z-20 pt-20 border-l shadow-2xl px-4 
-            {%- if block.settings.glass %} bg-opacity-60 backdrop-filter backdrop-blur border-white border-opacity-20{%- endif -%}"
+<div class="fixed flex flex-col top-0 right-0 md:w-2/5 h-screen bg-gray-50 transform overflow-y-auto z-20 pt-20 border-l shadow-2xl 
+            {%- if blocksettings.glass %} bg-opacity-60 backdrop-filter backdrop-blur border-white border-opacity-20{%- endif -%}"
     :class="{'w-11/12':discountIndex != -1,'w-5/6':discountIndex === -1}"
     x-show="cartOpen"
     x-transition:enter="transition-all duration-500 ease-out"
@@ -43,21 +42,22 @@
 
     <template hidden x-if="cart.items.length == 0">
         <div>
-            <div class="font-normal">Cart is empty</div>
+            <div class="px-4 font-normal">Cart is empty</div>
         </div>
     </template>
     <template hidden x-if="cart.items.length >= 1">
-        <div class="grid w-full grid-cols-1 pl-4 font-normal gap-y-8">
+        <div class="grid flex-none w-full grid-cols-1 pl-8 pr-4 font-normal gap-y-8">
             <template x-for="(item, index, key) in cart.items" :key="item.key">
                 <div class="relative flex items-center w-full gap-x-2" :product-id="item.id">
                     <img class="flex-none w-1/4 lazyload" 
+                        :class="{'filter blur':item.quantity==0}"
                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw"
                         :style="`aspect-ratio: ${item.featured_image.aspect_ratio}`" 
                         :data-src="dataImg(item.featured_image.url)" 
                         :data-aspect-ratio="item.featured_image.aspect_ratio" 
                         :alt="item.featured_image.alt"
                         data-sizes="auto"/>
-                    <div class="relative flex flex-wrap flex-auto w-3/4">
+                    <div class="relative flex flex-wrap flex-auto w-3/4"  :class="{'filter blur':item.quantity==0}">
                         <div class="flex-none w-full text-base text-gray-900" x-text="item.product_title"></div>
                         <div class="flex flex-none w-1/2 pt-2 text-sm text-gray-700 divide-x sm:w-1/4 md:w-1/2">
                             <template :key="index" hidden x-for="(option, index) in item.options_with_values">
@@ -69,13 +69,14 @@
                             <input @input.debounce.400="if(item.quantity >= 1){index++;updateCart(index,item.quantity)}" class="flex-none w-8 h-8 p-1 text-center border border-gray-400 appearance-none focus:border-gray-400" type="number" x-model="item.quantity"/>
                             <button @click.prevent="index++;item.quantity++;updateCart(index,item.quantity)" class="flex-auto w-8 h-8 border border-gray-400 appearance-none focus:outline-none">+</button>
                         </div>
-                        <div class="flex-auto w-1/2 max-w-full pt-2 text-base font-medium text-right divide-x min-w-max text-cta-600">
-                            <button x-show="item.quantity != 0" class="absolute left-0 mr-4 text-red-400 underline" @click.prevent="index++;item.quantity = 0;updateCart(index,0)">remove</button>
+                        <div class="flex-auto w-3/4 max-w-full pt-2 text-base font-medium text-right divide-x min-w-max text-cta-600">
+                            <button x-show="item.quantity != 0" class="float-left pr-2 text-red-400 underline sm:pl-2 sm:mx-2" @click.prevent="index++;item.quantity = 0;updateCart(index,0)">remove</button>
                             <span class="pl-2" :class="{'line-through text-gray-900 font-light': discountIndex != -1}" x-text="formatCurrency(item.original_price*item.quantity)"></span>
                             <span class="pl-2" x-cloak x-show="discountIndex != -1" x-text="discountPrice(item.original_price*item.quantity)"></span>
                         </div>
                     </div>
-                    <div class="absolute inset-[-1rem] -left-2 bg-opacity-0 backdrop-filter backdrop-blur-sm" x-show="item.quantity == 0" x-transition:enter="transition-all duration-700 duration-200"
+                    <div class="absolute inset-[-1rem] -left-2 bg-opacity-0" x-show="item.quantity == 0"
+                    x-transition:enter="transition-all duration-200"
                     x-transition:enter-start="opacity-0"
                     x-transition:enter-end="opacity-100"
                     x-transition:leave="transition-all duration-300"
@@ -89,9 +90,9 @@
                 </div>
             </template>
             <div class="w-full text-base leading-8 text-right">
-                <template x-for="(line, index) in cartText" :key="index">
+                <template x-for="(line, index) in cartText({{blocksettings.showShipping}},{{blocksettings.showShippingThreshold}})" :key="index">
                     <div>
-                        <span class="font-normal text-gray-900" x-text="line.label"></span>:
+                        <span class="font-normal text-gray-900" x-text="line.label"></span>
                         <span class="pl-2 font-medium text-cta-600" x-text="line.value"></span>
                     </div>
                 </template>
@@ -99,13 +100,29 @@
         </div>
 
     </template>
+    <div class="sticky bottom-0 flex-auto w-full px-8 pt-12 bg-gradient-to-b from-transparent via-gray-50 to-gray-50">
+        {%- if blocksettings.showShippingThreshold -%}
+                <span class="block mx-auto text-center" x-text="shippingThresholdMessage"></span>
+                <progress class="w-full h-4 my-2 cartBar" min="0" max="{{settings.freeShippingThreshold}}" :value="totalPriceWithoutShipping"></progress>
+        {%- endif -%}
 
-    <div class="w-full py-4 border-t-2" x-cloak x-show="cart.items.length >= 1">
-        <a href="/checkout"><button class="flex w-full py-4 text-center text-white rounded shadow-md bg-cta-600 justify-evenly hover:shadow-inner hover:bg-cta-800">
-            <span x-text="totalPrice()"></span><span class="pl-2 border-l">Proceed to Checkout</span><svg class="inline w-4 h-4 fill-current"><use xlink:href="#icon-right-arrow"></use></svg>
-        </button></a>
+        <div :class="{'pointer-events-none':cart.items_subtotal_price==0}" x-cloak x-show="cart.items.length >= 1">
+            <a href="/checkout"><button class="flex flex-wrap w-full py-4 text-center text-white transition-all duration-200 rounded shadow-md bg-cta-600 justify-evenly hover:shadow-inner hover:bg-cta-800 disabled:bg-truegray-600 disabled:shadow-none" :disabled="cart.items_subtotal_price==0">
+                <span class="flex-auto flex-shrink-0" x-text="totalPriceFormatted({{blocksettings.showShipping}},{{blocksettings.showShippingThreshold}})"></span><span class="flex-auto flex-shrink-0 pl-2 border-l">Proceed to Checkout</span><svg class="self-center flex-auto flex-shrink-0 inline w-4 h-4 fill-current"><use xlink:href="#icon-right-arrow"></use></svg>
+            </button></a>
+        </div>
+        {%- assign continueTarget = routes.root_url -%}
+        {%- if request.page_type == 'collection' or request.page_type == 'index' -%}
+            {%- assign closeOnContinue = true -%}        
+        {%- endif -%}
+        {%- assign requestPathArray = request.path | split: '/' -%}
+        {%- if request.page_type == 'product' and requestPathArray[1] == 'collections' -%}
+            {%- assign targetHandle = requestPathArray[2] -%}
+            {%- assign continueTarget = collections[targetHandle].url -%}
+        {%- endif -%}
+        <div class="py-4 text-center">
+            <a {%- if closeOnContinue %} @click.prevent="cartOpen = false" {%- else %} href="{{ continueTarget }}" {%- endif %} class="underline cursor-pointer">Continue Shopping</a></div>
     </div>
-    <div class="w-full py-4 text-center"><a href="" class="underline cursor-pointer">Continue Shopping</a></div>
 
 </div>
 

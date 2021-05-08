@@ -19,17 +19,17 @@
         "content": "Use these settings to properly display your free shipping threshold sitewide."
       },
       {
-        "type": "checkbox",
-        "label": "Display Free Shipping Threshold",
-        "id": "freeShipping",
-        "default": false,
-        "info": "Free shipping threshold needs to be added in shop shipping settings to actually provide free shipping"
+          "type":"number",
+          "label":"Free Shipping Threshold",
+          "id":"freeShippingThreshold",
+          "info":"The Cart Value at which a user should qualify for Free Shipping without a decimal. Example for $35: '3500'.",
+          "default":3500
       },
       {
         "type": "number",
         "label": "Estimated Shipping",
         "id": "estimatedShipping",
-        "info": "An average shipping cost presented without a decimal. Example for $5: '500'",
+        "info": "An average shipping cost presented without a decimal. Example for $5: '500'. This is used for displaying estimated shipping in the carts.",
         "default":500
       },
       {
