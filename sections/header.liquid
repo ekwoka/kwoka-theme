@@ -137,6 +137,9 @@
             <button class="flex flex-col px-6 py-6 mx-auto md:flex-row focus:ring-0">
               <svg class="flex-none order-1 block w-8 h-8 mx-auto md:w-6 md:ml-2 md:h-6 md:order-2 icon md:inline-block"><use xlink:href="#icon-cart"></use></svg>
               <span class="flex-none order-2 block mx-auto md:order-1 md:inline-block">Cart</span>
+              {%- if cart.item_count >= 1 %}
+                <div class="absolute p-[0.4rem] bg-red-700 rounded-full top-4 right-4 md:top-5 md:right-5 md:p-[0.35rem]"></div>
+              {%- endif %}
             </button>
           </a>
         {%- if cartDrawer == true -%}
@@ -150,7 +153,7 @@
             <span class="flex-none order-2 block mx-auto md:order-1 md:inline-block">Cart</span>
             <div x-show="cart.items.length >=1" 
               class="absolute p-[0.4rem] bg-red-700 rounded-full top-4 right-4 md:top-5 md:right-5 md:p-[0.35rem]"
-              x-cloak></div>
+              {%- if cart.item_count == 0 %} x-cloak{%- endif -%}></div>
           </button>
         {%- endif -%}
 
@@ -160,12 +163,11 @@
 </div>
 
 {%- for block in section.blocks -%}
-<!-- {{ block.type }} - {{ block.id }} -->
   {%- case block.type -%}
     {%- when 'menu' -%}
       {%- render 'mobile-menu', settings: block.settings -%}
     {%- when 'cart' -%}
-      {%- render 'cart-drawer', block.settings: block.settings -%}
+      {%- render 'cart-drawer', blocksettings: block.settings -%}
   {%- endcase -%}
 {%- endfor -%}
 
@@ -657,23 +659,16 @@
           },
           {
               "type": "checkbox",
-              "id": "freeShippingThreshold",
-              "label": "Show Free Shipping Threshold Information",
+              "id": "showShippingThreshold",
+              "label": "Show Free Shipping Threshold Bar",
+              "info": "Set the Free Shipping Threshold in the Theme Settings",
               "default": true
           },
           {
-              "type": "number",
-              "id": "priceThreshold",
-              "label": "Cart Value at which Free Shipping Applies",
-              "default": 40,
-              "info": "Numeric Value without currency marker. Whole Numbers as Decimals allowed."
-          },
-          {
-              "type": "number",
-              "id": "estimatedShipping",
-              "label": "Estimated Shipping",
-              "default": 500,
-              "info": "Shipping Value Customer can expect to pay if free shipping threshold is not met. Present without decimal. Example for $5: '500'"
+              "type":"checkbox",
+              "id":"showShipping",
+              "label":"Display Estimated Shipping Cost",
+              "default": true
           }
       ]
     }
