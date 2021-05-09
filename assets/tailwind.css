@@ -811,9 +811,6 @@ select {
 .mr-2 {
 	margin-right: 0.5rem;
 }
-.mr-4 {
-	margin-right: 1rem;
-}
 .mb-4 {
 	margin-bottom: 1rem;
 }
@@ -1070,9 +1067,6 @@ select {
 .border-l {
 	border-left-width: 1px;
 }
-.border-t-2 {
-	border-top-width: 2px;
-}
 .border-r {
 	border-right-width: 1px;
 }
@@ -1232,9 +1226,6 @@ select {
 }
 .pt-12 {
 	padding-top: 3rem;
-}
-.pl-4 {
-	padding-left: 1rem;
 }
 .text-right {
 	text-align: right;
@@ -1398,9 +1389,6 @@ select {
 }
 .duration-200 {
 	transition-duration: 200ms;
-}
-.duration-700 {
-	transition-duration: 700ms;
 }
 .ease-out {
 	transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
