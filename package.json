@@ -17,7 +17,9 @@
     "watch:dev": "run-p init:dev css:watch sync:dev",
     "reset:dev": "run-s download:dev build:dev",
     "open:dev": "theme open -e development -E",
-    "update:alpine": "minify node_modules/alpinejs/dist/alpine.js > assets/alpine.min.js"
+    "minify:all": "run-s minify:alpine minify:js",
+    "minify:alpine": "minify node_modules/alpinejs/dist/alpine.js > assets/alpine.min.js",
+    "minify:js": "minify assets/lazysizes.js assets/alpine.min.js > assets/minified.min.js"
   },
   "repository": {
     "type": "git",

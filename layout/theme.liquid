@@ -18,7 +18,7 @@
         {%- assign base_font_bold_italic = base_font_bold | font_modify: 'style', 'italic' -%}
 
         <link rel="preload" href="{{ 'tailwind.css' | asset_url }}" as="style">
-        <link rel="preload" href="{{ 'lazysizes.js' | asset_url }}" as="script">
+        <script src="{{ 'minified.min.js' | asset_url }}" onload="performance.mark('minified:script_loaded.end');" defer></script>
 
         {%- if canonical_url != blank  -%}
             <link rel="canonical" href="{{ canonical_url }}">
@@ -166,8 +166,6 @@
     <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
   {%- endif -%}
 
-  <script src="{{ 'lazysizes.js' | asset_url }}" async></script>
-
   <script type="text/javascript">
     if (window.MSInputMethodContext && document.documentMode) {
       var scripts = document.getElementsByTagName('script')[0];
@@ -217,8 +215,7 @@
     <li id="a11y-selection-message">{{ 'general.accessibility.selection_help' | t }}</li>
   </ul>
 
-  <script src="{{ 'theme.js' | asset_url }}" async onload="performance.mark('debut:script_loaded.end');"></script>
-  <script src="{{ 'alpine.min.js' | asset_url }}" async onload="performance.mark('alpine:script_loaded.end');"></script>
+  <script src="{{ 'theme.js' | asset_url }}" onload="performance.mark('debut:script_loaded.end');" defer></script>
   
   {%- if settings.hideExpressCheckouts -%}<script>document.cookie = "dynamic_checkout_shown_on_cart=1;Path=/;"</script>{%- endif -%}
 </body>
