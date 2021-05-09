@@ -5,7 +5,7 @@
   "scripts": {
     "css:build": "NODE_ENV=production postcss assets/tailwind.pre.css --o assets/tailwind.css --verbose",
     "css:critical": "NODE_ENV=critical TAILWIND_MODE=build postcss assets/tailwind.critical.pre.css --o snippets/critical-css.liquid --verbose",
-    "css:fulldev": "postcss assets/tailwind.pre.css --o assets/tailwind.css --verbose",
+    "css:fulldev": "NODE_ENV=production TAILWIND_MODE=build postcss assets/tailwind.pre.css --o assets/tailwind.css --verbose",
     "css:watch": "NODE_ENV=development TAILWIND_MODE=watch postcss assets/tailwind.pre.css --o assets/tailwind.css --verbose -w",
     "sync:dev": "browser-sync start --proxy 'https://kwoka-test-theme.myshopify.com' --files 'reload.config.js' --reload-delay 2000 --config bs.config.js",
     "deploy:dev": "theme deploy -e development --allow-live",
@@ -16,7 +16,8 @@
     "build:prod": "run-s css:build deploy:prod",
     "watch:dev": "run-p init:dev css:watch sync:dev",
     "reset:dev": "run-s download:dev build:dev",
-    "open:dev": "theme open -e development -E"
+    "open:dev": "theme open -e development -E",
+    "update:alpine": "minify node_modules/alpinejs/dist/alpine.js > assets/alpine.min.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
     "url": "https://thekwoka.net/"
   },
   "dependencies": {
+    "alpinejs": "^2.8.2",
     "autoprefixer": "^10.2.5",
     "postcss": "^8.2.13"
   },
@@ -36,6 +38,7 @@
     "@tailwindcss/typography": "^0.4.0",
     "browser-sync": "^2.26.14",
     "cssnano": "^5.0.2",
+    "minify": "^7.0.2",
     "npm-run-all": "^4.1.5",
     "postcss-cli": "^8.3.1",
     "tailwindcss": "^2.1.2"
