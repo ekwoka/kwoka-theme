@@ -215,7 +215,7 @@
     <li id="a11y-selection-message">{{ 'general.accessibility.selection_help' | t }}</li>
   </ul>
 
-  <script src="{{ 'theme.js' | asset_url }}" onload="performance.mark('debut:script_loaded.end');" defer></script>
+  <script src="{{ 'theme.min.js' | asset_url }}" onload="performance.mark('debut:script_loaded.end');" defer></script>
   
   {%- if settings.hideExpressCheckouts -%}<script>document.cookie = "dynamic_checkout_shown_on_cart=1;Path=/;"</script>{%- endif -%}
 </body>
