@@ -100,7 +100,7 @@
         </div>
 
     </template>
-    <div class="sticky bottom-0 flex-auto w-full px-8 pt-12 bg-gradient-to-b from-transparent via-gray-50 to-gray-50">
+    <div class="sticky bottom-0 flex-auto w-full px-8 pt-12 bg-gradient-to-b from-transparent via-gray-50 to-gray-50" x-cloak>
         {%- if blocksettings.showShippingThreshold -%}
                 <span class="block mx-auto text-center" x-text="shippingThresholdMessage"></span>
                 <progress class="w-full h-4 my-2 cartBar" min="0" max="{{settings.freeShippingThreshold}}" :value="totalPriceWithoutShipping"></progress>
@@ -120,7 +120,7 @@
             {%- assign targetHandle = requestPathArray[2] -%}
             {%- assign continueTarget = collections[targetHandle].url -%}
         {%- endif -%}
-        <div class="py-4 text-center">
+        <div class="py-4 text-center" x-cloak>
             <a {%- if closeOnContinue %} @click.prevent="cartOpen = false" {%- else %} href="{{ continueTarget }}" {%- endif %} class="underline cursor-pointer">Continue Shopping</a></div>
     </div>
 
