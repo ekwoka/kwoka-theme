@@ -82,10 +82,10 @@
     {%- render 'critical-css' %}
   </style>
 
-  <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}" type="text/css" media="print" onload="this.media='all';onLoadStylesheet()">
+  <link rel="stylesheet" href="{{ 'theme.min.css' | asset_url }}" type="text/css" media="print" onload="this.media='all';onLoadStylesheet()">
   <link rel="stylesheet" href="{{ 'tailwind.css' | asset_url }}" type="text/css" media="print" onload="this.media='all';onLoadTailwind()">
   <noscript>
-    {{ 'theme.css' | asset_url | stylesheet_tag }}
+    {{ 'theme.min.css' | asset_url | stylesheet_tag }}
     {{ 'tailwind.css' | asset_url | stylesheet_tag }}
     <style>
       .js {
@@ -176,8 +176,6 @@
       scripts.parentNode.insertBefore(polyfill, scripts);
     }
   </script>
-
-  <link rel="preload" href="{{ 'theme.css' | asset_url }}" as="style">
 
   {{ content_for_header }}
 </head>
