@@ -18,7 +18,8 @@
         {%- assign base_font_bold_italic = base_font_bold | font_modify: 'style', 'italic' -%}
 
         <link rel="preload" href="{{ 'tailwind.css' | asset_url }}" as="style">
-        <script src="{{ 'minified.min.js' | asset_url }}" onload="performance.mark('minified:script_loaded.end');" defer></script>
+        <script>window.performance.mark('timber:script_loaded.start');</script>
+        <script src="{{ 'timber.min.js' | asset_url }}" onload="performance.mark('timber:script_loaded.end');" defer></script>
 
         {%- if canonical_url != blank  -%}
             <link rel="canonical" href="{{ canonical_url }}">
