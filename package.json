@@ -20,7 +20,7 @@
     "minify:all": "run-p minify:alpine minify:css && run-s minify:js",
     "minify:alpine": "minify node_modules/alpinejs/dist/alpine.js > assets/alpine.min.js",
     "minify:css": "minify assets/theme.css > assets/theme.min.css",
-    "minify:js": "minify node_modules/lazysizes/plugins/rias/ls.rias.min.js node_modules/lazysizes/lazysizes.min.js assets/alpine.min.js > assets/timber.min.js && minify assets/theme.js > assets/theme.min.js"
+    "minify:js": "minify node_modules/lazysizes/plugins/rias/ls.rias.min.js node_modules/lazysizes/plugins/aspectratio/ls.aspectratio.min.js node_modules/lazysizes/plugins/attrchange/ls.attrchange.min.js node_modules/lazysizes/lazysizes.min.js assets/alpine.min.js > assets/timber.min.js && minify assets/theme.js > assets/theme.min.js"
   },
   "repository": {
     "type": "git",
