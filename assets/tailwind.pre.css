@@ -6,12 +6,16 @@ html {
   scroll-behavior: smooth;
 }
 
+img.lazyload,img.lazyloading, img.lazyloaded {
+  @apply transition-all duration-300 ease-out
+}
+
 img.lazyload,img.lazyloading {
-  @apply  transition-all duration-200 opacity-0
+  @apply  opacity-0 animate-pulse bg-gray-300
 }
 
 img.lazyloaded {
-  @apply opacity-100 transition-all duration-200
+  @apply opacity-100
 }
 
 input[type=number]::-webkit-inner-spin-button, 
