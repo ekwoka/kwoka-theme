@@ -4,10 +4,10 @@
     {%- assign collection = item.object -%}
     {%- if collection -%}
         <a class="mx-2" href="{{ collection.url }}">
-                    <div class="p-1 bg-white rounded-full">
-                        <div class="relative p-8 mx-auto rounded-full">
             <button class="flex flex-col items-center justify-center mx-auto text-center">
                 <div class="p-1 rounded-full bg-gradient-to-tr from-yellow-300 via-pink-500 to-indigo-700">
+                    <div class="p-1 bg-white rounded-full">
+                        <div class="relative p-8 mx-auto rounded-full">
                             {%- assign imgurl = collection.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
                             <img 
                                 src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw"
