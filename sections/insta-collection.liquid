@@ -1,5 +1,5 @@
 <!-- insta-collection.liquid start -->
-<div class="flex flex-row justify-between max-w-full px-4 overflow-y-auto flex-nowrap {%- if section.settings.mobileOnly %} md:hidden{%-endif-%}">
+<div class="flex flex-row justify-between max-w-full px-4 overflow-y-auto flex-nowrap pt-4 pb-8 {%- if section.settings.mobileOnly %} md:hidden{%-endif-%}">
     {%- for item in linklists[section.settings.instamenu].links -%}
     {%- assign collection = item.object -%}
     {%- if collection -%}

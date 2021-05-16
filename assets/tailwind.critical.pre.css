@@ -3,35 +3,51 @@
 
 [x-cloak] {
     display:none;
-  }
-  
-  button, input, optgroup, select, textarea {
-      font-family: inherit;
-      font-size: 100%;
-      line-height: 1.15;
-      margin: 0;
-      padding: 0;
-      line-height: inherit;
-      color: inherit;
-  }
-  
-  button, select {
-      text-transform: none;
-  }
-  
-  button, [type='button'], [type='reset'], [type='submit'] {
-      -webkit-appearance: button;
-  }
-  
-  button {
-      background-color: transparent;
-      background-image: none;
-  }
-  
-  button, [role="button"] {
-      cursor: pointer;
-  }
-  
-  *, ::before, ::after {
-      border-width: 0;
-  }
+}
+
+button, input, optgroup, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+    padding: 0;
+    line-height: inherit;
+    color: inherit;
+}
+
+button, select {
+    text-transform: none;
+}
+
+button, [type='button'], [type='reset'], [type='submit'] {
+    -webkit-appearance: button;
+}
+
+button {
+    background-color: transparent;
+    background-image: none;
+}
+
+button, [role="button"] {
+    cursor: pointer;
+}
+
+*, ::before, ::after {
+    border-width: 0;
+}
+
+.main-critical-hidden > * {
+    @apply hidden transition-all duration-1000 ease-out
+}
+
+.main-critical-hidden > :first-child {
+    @apply block opacity-0 invisible
+}
+
+.non-critical-hide {
+    @apply hidden
+}
+
+.index-banner {
+    @apply visible block opacity-0
+}

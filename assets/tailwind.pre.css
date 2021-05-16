@@ -38,3 +38,15 @@ progress.cartBar[value]::-moz-progress-bar {
   @apply rounded-sm transition-all duration-[2500ms] ease-out bg-gradient-to-b from-truegray-400 to-truegray-700 bg-blend-luminosity bg-cta-600;
   background-size: 35px 20px, 100% 100%, 100% 100%;
 }
+
+.main-critical-hidden > * {
+  @apply block;
+}
+
+.main-critical-hidden > :first-child {
+  @apply block visible opacity-100
+}
+
+.index-banner {
+  @apply visible block opacity-100
+}
