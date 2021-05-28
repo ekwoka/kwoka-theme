@@ -19,7 +19,7 @@
      x-cloak></div>
 
 <div class="fixed flex flex-col top-0 right-0 md:w-2/5 h-screen bg-gray-50 transform overflow-y-auto z-20 pt-20 border-l shadow-2xl 
-            {%- if blocksettings.glass %} bg-opacity-60 backdrop-filter backdrop-blur border-white border-opacity-20{%- endif -%}"
+            {%- if blocksettings.glass %} bg-opacity-70 backdrop-filter backdrop-blur border-white border-opacity-20{%- endif -%}"
     :class="{'w-11/12':discountIndex != -1,'w-5/6':discountIndex === -1}"
     x-show="cartOpen"
     x-transition:enter="transition-all duration-500 ease-out"
@@ -102,7 +102,7 @@
         </div>
 
     </template>
-    <div class="sticky bottom-0 flex-auto w-full px-8 pt-12 bg-gradient-to-b from-transparent via-gray-50 to-gray-50" x-cloak>
+    <div class="sticky bottom-0 flex-auto w-full px-4 pt-12 bg-gradient-to-b from-transparent via-gray-50 to-gray-50" x-cloak>
         {%- if blocksettings.showShippingThreshold -%}
                 <span class="block mx-auto text-center" x-text="shippingThresholdMessage"></span>
                 <progress class="w-full h-4 my-2 cartBar" min="0" max="{{settings.freeShippingThreshold}}" :value="totalPriceWithoutShipping"></progress>
