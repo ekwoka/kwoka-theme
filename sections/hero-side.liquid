@@ -1,0 +1,59 @@
+<div class="container px-6 py-16 mx-auto">
+    <div class="items-center md:flex">
+        <div class="w-full md:w-1/2">
+            <div class="max-w-lg">
+                <h1 class="text-2xl font-semibold text-gray-800 uppercase md:text-3xl">Best Place To Choose Your Clothes</h1>
+                <p class="mt-2 text-gray-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro beatae error laborum ab amet sunt recusandae? Reiciendis natus perspiciatis optio.</p>
+                <a href="/" class="px-3 py-2 mt-4 text-sm font-medium text-white uppercase rounded-md bg-cta-600 hover:bg-cta-500 focus:outline-none focus:bg-cta-500">Shop Now</a>
+            </div>
+        </div>
+
+        <div class="flex items-center justify-center w-full mt-6 md:mt-0 md:w-1/2">
+            {%- assign imageurl = section.settings.heroimage | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            <img class="w-full h-full max-w-2xl lazyload" 
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw"
+                data-src="{{ imageurl }}"
+                data-aspectratio="{{ section.settings.heroimage.aspect_ratio }}"
+                data-sizes="auto"
+                alt="">
+        </div>
+    </div>
+</div>
+
+
+{% schema %}
+{
+    "name": "Hero Text with Image",
+    "class": "w-full index-banner",
+    "settings": [
+    {
+        "type": "header",
+        "content": "Hero Text",
+        "info": "These options help define the visual style of the text content in this hero section"
+    },
+    {
+        "type": "text",
+        "id": "h1",
+        "label": "Main Headline",
+        "default": "A Serously Awesome Theme",
+        "placeholder": "enter text here"
+    },
+    {
+        "type": "header",
+        "content": "Image Options",
+        "info": "These options help define the visual style of the image in this Hero Section"
+    },
+        {
+            "type": "image_picker",
+            "id": "heroimage",
+            "label": "Image"
+        }
+    ],
+    "presets": [
+        {
+            "category": "Hero",
+            "name":"Hero Text with Image"
+        }
+    ]
+}
+{% endschema %}
