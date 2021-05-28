@@ -212,10 +212,28 @@
           "instamenu": "insta-menu",
           "mobileOnly": true
         }
+      },
+      "16221677685de4af9a": {
+        "type": "hero-2",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/blush-pink-and-white-workspace.jpg",
+          "deskimg": "shopify:\/\/shop_images\/preparing-for-travel.jpg",
+          "backdrop": "bg-gray-900",
+          "backdropOpacity": 90,
+          "alignment": "mr-auto text-left",
+          "textShade": "text-gray-50",
+          "haveGradient": true,
+          "fromColor": "from-green-600",
+          "toColor": "to-green-300",
+          "h1": "A Seriously Awesome Theme",
+          "paragraph": "Like, REALLY awesome.",
+          "cta": "main-menu"
+        }
       }
     },
     "content_for_index": [
-      "1619676305466de308"
+      "1619676305466de308",
+      "16221677685de4af9a"
     ]
   },
   "presets": {

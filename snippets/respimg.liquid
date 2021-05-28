@@ -1,0 +1,7 @@
+{%- comment -%}use: {%- render 'respimg' with image: [image object] -%}{%- endcomment -%}
+
+{%- assign widths = '180,360,540,720,900,1080,1296,1512,1728,1944,2160,2376,2592,2808,3024' | split: ',' -%}
+{%- for width in widths -%}
+    {%- assign widthx = width | append: 'x' -%}
+    {{ image | img_url: widthx }} {{width | append: 'w'}}{%- unless forloop.last -%},{%- endunless -%}
+{%- endfor -%}

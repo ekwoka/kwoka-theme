@@ -15,6 +15,7 @@
      x-transition:enter-start="!w-full !bg-opacity-0 !backdrop-blur-0"
      x-transition:leave="transition-all duration-300 ease-in"
      x-transition:leave-end="!w-full !bg-opacity-0 !backdrop-blur-0"
+     style="display:none"
      x-cloak></div>
 
 <div class="fixed flex flex-col top-0 right-0 md:w-2/5 h-screen bg-gray-50 transform overflow-y-auto z-20 pt-20 border-l shadow-2xl 
@@ -26,6 +27,7 @@
     x-transition:leave="transition-all duration-300 ease-in"
     x-transition:leave-end="!translate-x-full"
     @click.away="cartOpen = false"
+    style="display:none"
     x-cloak>
 
     <div class="absolute top-0 left-0 w-1/2 p-8 mx-auto text-base min-w-max max-w-5/6" x-cloak>
