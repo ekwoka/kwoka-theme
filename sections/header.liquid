@@ -85,7 +85,7 @@
     {% endif %}
   {% endif %}
 
-  <header class="relative z-10 h-[max-content] w-full px-2 py-4 bg-white border-b border-gray-300 shadow-md min-h-26 md:min-h-20 md:px-4">
+  <header class="relative z-10 h-[max-content] w-full px-2 py-4 bg-white border-b border-gray-300 shadow-md min-h-26 md:min-h-20 md:px-4 {%- if section.settings.glassMorph %} bg-opacity-70 backdrop-filter backdrop-blur border-white border-opacity-20{%- endif -%}">
     <div class="flex items-center max-w-screen-lg mx-auto align-middle">
       <div class="flex-none order-first w-20 text-center md:hidden">
         <a href="#mobileMenu">
@@ -317,6 +317,12 @@
       "type": "checkbox",
       "id": "sticky",
       "label": "Sticky Header",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "glassMorph",
+      "label": "Transparent Header",
       "default": false
     },
     {
