@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  @responsive {
+.scroll-pad-36 {
+      scroll-padding-top: 9rem;
+    }
+.scroll-pad-28 {
+      scroll-padding-top: 7rem;
+    }
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -37,6 +48,10 @@ progress.cartBar[value]::-webkit-progress-value {
 progress.cartBar[value]::-moz-progress-bar {
   @apply rounded-sm transition-all duration-[2500ms] ease-out bg-gradient-to-b from-truegray-400 to-truegray-700 bg-blend-luminosity bg-cta-600;
   background-size: 35px 20px, 100% 100%, 100% 100%;
+}
+
+.non-critical-hide {
+  @apply block;
 }
 
 .main-critical-hidden > * {

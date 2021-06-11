@@ -185,7 +185,8 @@
   {% render 'alpinescript' %}
   {% render 'svg-defs' %}
 
-  <a class="hidden" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+  <a class="opacity-0 focus-visible:opacity-100 fixed block bg-white top-4 left-4 p-2 text-black z-[999]" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+
 
   {%- section 'header' -%}
 

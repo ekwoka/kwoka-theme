@@ -44,6 +44,26 @@
   top: 0;
   z-index:15;
 }
+
+html {
+  scroll-padding-top: 9rem;
+}
+
+@media (min-width: 768px) {
+  html {
+    scroll-padding-top: 7rem;
+  }
+}
+{%- else -%}
+html {
+  scroll-padding-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  html {
+    scroll-padding-top: 2rem;
+  }
+}
 {% endif -%}
 </style>
 
