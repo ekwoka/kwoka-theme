@@ -1,21 +1,33 @@
-<div class="container px-6 py-16 mx-auto">
+<div class="container max-w-screen-lg px-4 py-12">
     <div class="items-center md:flex">
         <div class="w-full md:w-1/2">
             <div class="max-w-lg">
-                <h1 class="text-2xl font-semibold text-gray-800 uppercase md:text-3xl">Best Place To Choose Your Clothes</h1>
-                <p class="mt-2 text-gray-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro beatae error laborum ab amet sunt recusandae? Reiciendis natus perspiciatis optio.</p>
-                <a href="/" class="px-3 py-2 mt-4 text-sm font-medium text-white uppercase rounded-md bg-cta-600 hover:bg-cta-500 focus:outline-none focus:bg-cta-500">Shop Now</a>
+                <h1 class="text-2xl font-semibold text-gray-800 capitalize md:text-3xl">{{section.settings.h1}}</h1>
+                <p class="mt-2 text-gray-600">{{section.settings.paragraph}}</p>
+                {%- if section.settings.cta -%}
+                {%- assign listlength = linklists[section.settings.cta].links.size -%}
+                    <div class="{{section.settings.alignment }} flex {{ section.settings.buttonDirection }} flex-wrap pt-4 md:pt-8 md:pr-8 justify-start w-full text-md md:text-lg lg:text-xl capitalize">
+                        {%- for link in linklists[section.settings.cta].links -%}
+                            <a href="{{ link.url }}" class="{%- if listlength == 1 -%}flex-none{%- else -%}flex-auto{%- endif %} px-4 py-2 m-2 tracking-wider text-center rounded-md shadow-md bg-gradient-to-t
+                                                {%- if forloop.index == 1 %}
+                                                  from-cta-700 to-cta-600 text-gray-50 hover:text-gray-100 hover:from-cta-600 hover:to-cta-500 focus-visible:text-gray-100 focus-visible:from-cta-600 focus-visible:to-cta-500
+                                                {%- else %}
+                                                  from-gray-300 to-gray-200 text-gray-800 opacity-80 hover:opacity-100
+                                                {%- endif -%}">
+                                {{ link.title | escape }}
+                            </a>
+                            {%- if forloop.index == 2 -%}
+                                {% break %}
+                            {%- endif -%}
+                        {%- endfor -%}
+                    </div>
+                {%- endif -%}
             </div>
         </div>
 
         <div class="flex items-center justify-center w-full mt-6 md:mt-0 md:w-1/2">
             {%- assign imageurl = section.settings.heroimage | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-            <img class="w-full h-full max-w-2xl lazyload" 
-                src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw"
-                data-src="{{ imageurl }}"
-                data-aspectratio="{{ section.settings.heroimage.aspect_ratio }}"
-                data-sizes="auto"
-                alt="">
+            <img class="w-full h-full max-w-2xl rounded-md shadow-md lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw" data-src="{{ imageurl }}" data-aspectratio="{{ section.settings.heroimage.aspect_ratio }}" data-sizes="auto" alt="">
         </div>
     </div>
 </div>
@@ -39,15 +51,45 @@
         "placeholder": "enter text here"
     },
     {
+      "type": "html",
+      "id": "paragraph",
+      "label": "Header Supporting Text",
+      "default": "Like, REALLY awesome",
+      "placeholder": "Enter Text Here",
+      "info": "Use '<br>' for a line break"
+    },
+    {
         "type": "header",
         "content": "Image Options",
         "info": "These options help define the visual style of the image in this Hero Section"
     },
+    {
+        "type": "image_picker",
+        "id": "heroimage",
+        "label": "Image"
+    },
+    {
+      "type": "link_list",
+      "id": "cta",
+      "label": "Main CTA Links",
+      "info": "A link list of up to 2 links. The first will be presented as the 'primary' cta, with the second link being a 'secondary' cta. Any additional links will be ignored."
+    },
+    {
+      "type": "select",
+      "id": "buttonDirection",
+      "label": "Side for Primary CTA",
+      "options": [
         {
-            "type": "image_picker",
-            "id": "heroimage",
-            "label": "Image"
+          "value": "flex-row",
+          "label": "Left side"
+        },
+        {
+          "value": "flex-row-reverse",
+          "label": "Right side"
         }
+      ],
+      "default": "flex-row"
+    }
     ],
     "presets": [
         {

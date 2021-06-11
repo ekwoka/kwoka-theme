@@ -33,12 +33,13 @@
       {{section.settings.paragraph}}
     </p>
     {%- if section.settings.cta -%}
-      <div class="{{section.settings.alignment }} flex {{ section.settings.buttonDirection }} flex-wrap pt-4 md:pt-8 justify-around min-w-3/4 md:min-w-1/2 text-md md:text-lg lg:text-xl capitalize">
+    {%- assign listlength = linklists[section.settings.cta].links.size -%}
+      <div class="{{section.settings.alignment }} flex {{ section.settings.buttonDirection }} flex-wrap pt-4 md:pt-8 justify-start min-w-3/4 md:min-w-1/2 text-md md:text-lg lg:text-xl capitalize">
         {%- for link in linklists[section.settings.cta].links -%}
           <a href="{{ link.url }}"
-            class="flex-auto px-4 py-2 mr-4 mb-4 tracking-wider text-center rounded-md shadow-md bg-gradient-to-t 
+            class="{%- if listlength == 1 -%}flex-none{%- else -%}flex-auto{%- endif %} px-4 py-2 mr-4 mb-4 tracking-wider text-center rounded-md shadow-md bg-gradient-to-t 
             {%- if forloop.index == 1 %}
-              from-gray-200 to-gray-100 text-gray-800 hover:text-gray-100 hover:from-cta-600 hover:to-cta-500
+              from-gray-200 to-gray-100 text-gray-800 hover:text-gray-100 hover:from-cta-600 hover:to-cta-500 focus-visible:text-gray-100 focus-visible:from-cta-600 focus-visible:to-cta-500
             {%- else %}
               from-gray-200 to-gray-100 text-gray-800 opacity-50 hover:opacity-90
             {%- endif -%}" >
