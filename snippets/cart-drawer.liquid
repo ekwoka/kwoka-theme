@@ -66,10 +66,10 @@
                                 <span class="flex-auto text-center" x-text="option.value"></span>
                             </template>
                         </div>
-                        <div class="flex flex-row flex-none max-w-1/2 flex-nowrap focus-within:ring-2 ring-primary-500">
-                            <button @click.prevent="item.quantity--;updateCart(index+1,item.quantity)" class="flex-auto w-8 h-8 border border-gray-400 focus:outline-none">-</button>
+                        <div class="flex flex-row flex-none max-w-1/2 flex-nowrap focus-within:ring-2 ring-primary-500" x-effect="updateCart(index+1,item.quantity)">
+                            <button @click.prevent="item.quantity--" class="flex-auto w-8 h-8 border border-gray-400 focus:outline-none">-</button>
                             <input @input.debounce.400="if(item.quantity >= 1){index+1;updateCart(index,item.quantity)}" class="flex-none w-8 h-8 p-1 text-center border border-gray-400 appearance-none focus:border-gray-400" type="number" x-model="item.quantity"/>
-                            <button @click.prevent="item.quantity++;updateCart(index+1,item.quantity)" class="flex-auto w-8 h-8 border border-gray-400 appearance-none focus:outline-none">+</button>
+                            <button @click.prevent="item.quantity++" class="flex-auto w-8 h-8 border border-gray-400 appearance-none focus:outline-none">+</button>
                         </div>
                         <div class="flex-auto w-3/4 max-w-full pt-2 text-base font-medium text-right divide-x min-w-max text-cta-600">
                             <button x-show="item.quantity != 0" class="float-left pr-2 text-red-400 underline sm:pl-2 sm:mx-2" @click.prevent="index++;item.quantity = 0;updateCart(index,0)">remove</button>
