@@ -24,14 +24,18 @@
   </picture>
   <div class="absolute inset-0 {{section.settings.backdrop}}" style="--tw-bg-opacity: 0.{{ section.settings.backdropOpacity }}"></div>
   <div class="absolute inset-0 flex flex-col justify-center max-w-screen-lg p-8 mx-auto overflow-hidden {{section.settings.textShade}}">
-    <h1 
-      class="{{ section.settings.alignment }} font-sans font-semibold tracking-wide text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl pb-4 md:pb-8
-      {%- if section.settings.haveGradient %} bg-gradient-to-tr bg-clip-text text-transparent {{section.settings.fromColor}} {{section.settings.toColor}}{%- endif -%}">
-      {{section.settings.h1}}
-    </h1>
-    <p class="{{ section.settings.alignment }} text-2xl sm:3xl md:text-4xl lg:text-5xl">
-      {{section.settings.paragraph}}
-    </p>
+    {%- if section.settings.customText -%}
+      {%- render 'custom-hero' -%}
+    {%- else -%}
+      <h1 
+        class="{{ section.settings.alignment }} font-sans font-semibold tracking-wide text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl pb-4 md:pb-8
+        {%- if section.settings.haveGradient %} bg-gradient-to-tr bg-clip-text text-transparent {{section.settings.fromColor}} {{section.settings.toColor}}{%- endif -%}">
+        {{section.settings.h1}}
+      </h1>
+      <p class="{{ section.settings.alignment }} text-2xl sm:3xl md:text-4xl lg:text-5xl">
+        {{section.settings.paragraph}}
+      </p>
+    {%- endif -%}
     {%- if section.settings.cta -%}
     {%- assign listlength = linklists[section.settings.cta].links.size -%}
       <div class="{{section.settings.alignment }} flex {{ section.settings.buttonDirection }} flex-wrap pt-4 md:pt-8 justify-start min-w-3/4 md:min-w-1/2 text-md md:text-lg lg:text-xl capitalize">
@@ -180,6 +184,13 @@
         }
       ],
       "default": "text-gray-50"
+    },
+    {
+      "type": "checkbox",
+      "id": "customText",
+      "label": "Use hard coded content",
+      "default": false,
+      "info": "Disable to use hard coded content in 'snippets/custom-hero.liquid'"
     },
     {
       "type": "header",
