@@ -223,6 +223,8 @@
           "backdropOpacity": 80,
           "alignment": "mr-auto text-left",
           "textShade": "text-gray-50",
+          "customText": true,
+          "vPosition": "justify-end",
           "haveGradient": true,
           "fromColor": "from-green-600",
           "toColor": "to-primary-300",
@@ -236,14 +238,24 @@
         "type": "hero-side",
         "settings": {
           "h1": "A Serously Awesome Theme",
-          "heroimage": "shopify:\/\/shop_images\/preparing-for-travel.jpg"
+          "paragraph": "Like, REALLY awesome",
+          "heroimage": "shopify:\/\/shop_images\/preparing-for-travel.jpg",
+          "cta": "banner-menu",
+          "buttonDirection": "flex-row"
+        }
+      },
+      "1624014593f1b68861": {
+        "type": "newsletter",
+        "settings": {
+          "emailProvider": "klaviyo"
         }
       }
     },
     "content_for_index": [
       "1619676305466de308",
       "1622198970cf1561cb",
-      "1622200004ed66e989"
+      "1622200004ed66e989",
+      "1624014593f1b68861"
     ]
   },
   "presets": {
