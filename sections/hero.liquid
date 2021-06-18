@@ -23,7 +23,7 @@
     />
   </picture>
   <div class="absolute inset-0 {{section.settings.backdrop}}" style="--tw-bg-opacity: 0.{{ section.settings.backdropOpacity }}"></div>
-  <div class="absolute inset-0 flex flex-col justify-center max-w-screen-lg p-8 mx-auto overflow-hidden {{section.settings.textShade}}">
+  <div class="absolute inset-0 flex flex-col {{section.settings.vPosition}} max-w-screen-lg p-8 mx-auto overflow-hidden {{section.settings.textShade}}">
     {%- if section.settings.customText -%}
       {%- render 'custom-hero' -%}
     {%- else -%}
@@ -191,6 +191,26 @@
       "label": "Use hard coded content",
       "default": false,
       "info": "Disable to use hard coded content in 'snippets/custom-hero.liquid'"
+    },
+    {
+      "type": "select",
+      "id": "vPosition",
+      "label": "Vertical Placement",
+      "default": "justify-center",
+      "options": [
+        {
+          "value": "justify-start",
+          "label": "Top"
+        },
+        {
+          "value": "justify-center",
+          "label": "Center"
+        },
+        {
+          "value": "justify-end",
+          "label": "Bottom"
+        }
+      ]
     },
     {
       "type": "header",
