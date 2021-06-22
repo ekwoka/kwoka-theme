@@ -2110,7 +2110,7 @@ body.prevent-scrolling {
 .page-container {
   transition: all 0.45s cubic-bezier(0.29, 0.63, 0.44, 1);
   position: relative;
-  overflow: hidden; }
+}
   @media only screen and (min-width: 750px) {
     .page-container {
       -ms-transform: translate3d(0, 0, 0);

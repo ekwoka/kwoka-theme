@@ -4,13 +4,13 @@
 #shopify-section-{{ section.id }} {
     {%- case section.settings.cardStyle -%}
     {%- when 'full' -%}
-	        margin-left: auto;
-	        margin-right: auto;
-            width: 100%;
-            --tw-bg-opacity: 1;
-            background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
-            --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+	    margin-left: auto;
+	    margin-right: auto;
+        width: 100%;
+        --tw-bg-opacity: 1;
+        background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
+        --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
     {%- when 'smCard' -%}
 	    margin-left: auto;
 	    margin-right: auto;
@@ -39,10 +39,20 @@
         --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
     {%- endcase -%}
+    position: sticky;
+    top: 25%;
+    z-index: 99;
 }
 </style>
 
-<div class="w-1/2 p-8 mx-auto text-center">Enter Your EMAIL!!!</div>
+<div class="flex flex-col items-center w-full p-8 mx-auto md:max-w-screen-sm gap-y-2" x-data="emailCaptureSection" x-show="show">
+    <h2 class="flex-auto">{{ section.settings.captureHeader }}</h1>
+    <p class="flex-auto">{{ section.settings.captureHtml }}</p>
+        <form class="flex flex-col w-full gap-1 md:flex-row">
+            <input class="flex-auto w-full px-4 py-2 text-gray-900 placeholder-gray-500 bg-white shadow-md md:w-3/4 focus:ring-cta-600 focus:border-cta-600" x-model="email" type="email" name="email" id="email" placeholder="Enter Email Here" aria-label="Enter Email">
+            <input class="px-4 py-2 shadow-md bg-gradient-to-t from-cta-700 to-cta-600 text-gray-50" type="button" value="{{ section.settings.captureButton}}" aria-label="Submit Email">
+        </form>
+</div>
 
 <!-- 'sections/newsletter.liquid' END -->
 
@@ -85,6 +95,12 @@
             ]
         },
         {
+            "type": "checkbox",
+            "id": "sticky",
+            "label": "Sticky Email Capture When Scrolling Past",
+            "default": true
+        },
+        {
             "type": "select",
             "id": "emailProvider",
             "label": "Email Service Provider",
@@ -102,6 +118,42 @@
                     "label": "Other (Use Box Below)"
                 }
             ]
+        },
+        {
+            "type": "header",
+            "content": "Text Settings"
+        },
+        {
+            "type": "text",
+            "id": "captureHeader",
+            "label": "Newsletter Header",
+            "default": "Join our Newsletter"
+        },
+        {
+            "type": "html",
+            "id": "captureHtml",
+            "label": "Newsletter Promotional Copy",
+            "info": "This accepts HTML elements and styling"
+        },
+        {
+            "type": "text",
+            "id": "captureButton",
+            "label": "Submit Button Label",
+            "default": "Get My Coupon"
+        },
+        {
+            "type": "text",
+            "id": "couponCode",
+            "label": "Coupon Code",
+            "info": "Coupon Code to apply for those who successfully submit their email. Both a Coupon Code and Coupon Value are required for a coupon to apply",
+            "placeholder": "get10now"
+        },
+        {
+            "type": "text",
+            "id": "couponOffer",
+            "label": "Coupon Discount Offer",
+            "info": "Value of Coupon. '10% Off', '$20', etc",
+            "placeholder": "10% off"
         }
     ],
     "presets": [

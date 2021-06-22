@@ -247,7 +247,24 @@
       "1624014593f1b68861": {
         "type": "newsletter",
         "settings": {
-          "emailProvider": "klaviyo"
+          "cardStyle": "mdCard",
+          "emailProvider": "klaviyo",
+          "captureHeader": "Join our Newsletter",
+          "captureHtml": "Join our Newsletter and enjoy 50% off everything in the store",
+          "captureButton": "Get My Coupon",
+          "couponCode": "",
+          "couponOffer": ""
+        }
+      },
+      "1624183213634e3284": {
+        "type": "collection",
+        "settings": {
+          "title": "Featured collection",
+          "collection": "",
+          "grid": 3,
+          "rows": 2,
+          "show_vendor": false,
+          "show_view_all": false
         }
       }
     },
@@ -255,7 +272,8 @@
       "1619676305466de308",
       "1622198970cf1561cb",
       "1622200004ed66e989",
-      "1624014593f1b68861"
+      "1624014593f1b68861",
+      "1624183213634e3284"
     ]
   },
   "presets": {

@@ -127,6 +127,22 @@
             }
         }
     };
+
+    function emailCaptureSection() {
+        return {
+            url: '',
+            listID: '',
+            email:'',
+            show: true,
+            sending: false,
+            success: false,
+            error: false,
+            added: false,
+            async fetchCoupon(code) {
+                await fetch();
+            }
+        }
+    }
 {%- comment -%}Global Functions{%- endcomment -%}
 
 
