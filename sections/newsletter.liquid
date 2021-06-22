@@ -45,12 +45,20 @@
 }
 </style>
 
-<div class="flex flex-col items-center w-full p-8 mx-auto md:max-w-screen-sm gap-y-2" x-data="emailCaptureSection" x-show="show">
+<div class="relative flex flex-col items-center w-full p-8 mx-auto md:max-w-screen-sm gap-y-2" 
+    x-data="emailCaptureSection"
+    x-show="show"
+    x-cloak>
+    <button @click.prevent="show = false" class="absolute right-4 md:-right-4 top-4">close 
+        <svg class="inline-block w-4 h-4 mx-auto icon"><use xlink:href="#icon-close"></svg>
+    </button>
     <h2 class="flex-auto">{{ section.settings.captureHeader }}</h1>
     <p class="flex-auto">{{ section.settings.captureHtml }}</p>
         <form class="flex flex-col w-full gap-1 md:flex-row">
             <input class="flex-auto w-full px-4 py-2 text-gray-900 placeholder-gray-500 bg-white shadow-md md:w-3/4 focus:ring-cta-600 focus:border-cta-600" x-model="email" type="email" name="email" id="email" placeholder="Enter Email Here" aria-label="Enter Email">
-            <input class="px-4 py-2 shadow-md bg-gradient-to-t from-cta-700 to-cta-600 text-gray-50" type="button" value="{{ section.settings.captureButton}}" aria-label="Submit Email">
+            <button class="px-4 py-2 shadow-md min-w-max bg-gradient-to-t from-cta-700 to-cta-600 text-gray-50" aria-label="Submit Email" @click.prevent="">
+                {{ section.settings.captureButton}}
+            </button>
         </form>
 </div>
 

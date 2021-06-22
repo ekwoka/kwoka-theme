@@ -133,13 +133,20 @@
             url: '',
             listID: '',
             email:'',
-            show: true,
+            show: false,
             sending: false,
             success: false,
             error: false,
-            added: false,
+            existed: false,
             async fetchCoupon(code) {
                 await fetch();
+            },
+            init() {
+                console.log('initializing...');
+                subscribed = window.localStorage.getItem('subscribed');
+                this.show = !subscribed
+                if(subscribed == true) return console.log('User Already Subscribed\nHiding Newsletter Signup');
+                return console.log('User not subscribed. Showing Newsletter Signup');
             }
         }
     }
