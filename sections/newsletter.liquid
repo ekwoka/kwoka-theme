@@ -4,41 +4,21 @@
 #shopify-section-{{ section.id }} {
     {%- case section.settings.cardStyle -%}
     {%- when 'full' -%}
-	    margin-left: auto;
-	    margin-right: auto;
         width: 100%;
-        --tw-bg-opacity: 1;
-        background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
-        --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
     {%- when 'smCard' -%}
-	    margin-left: auto;
-	    margin-right: auto;
         max-width: 640px;
-        border-radius: 0.375rem;
-        --tw-bg-opacity: 1;
-        background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
-        --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
     {%- when 'mdCard' -%}
-	    margin-left: auto;
-	    margin-right: auto;
         max-width: 768px;
-        border-radius: 0.375rem;
-        --tw-bg-opacity: 1;
-        background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
-        --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
     {%- when 'lgCard' -%}
-	    margin-left: auto;
-	    margin-right: auto;
         max-width: 1024px;
-        border-radius: 0.375rem;
-        --tw-bg-opacity: 1;
-        background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
-        --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
     {%- endcase -%}
+	margin-left: auto;
+	margin-right: auto;
+    border-radius: 0.375rem;
+    --tw-bg-opacity: 1;
+    background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
+    --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
     position: sticky;
     top: 25%;
     z-index: 99;

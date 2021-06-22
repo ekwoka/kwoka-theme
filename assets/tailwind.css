@@ -959,11 +959,11 @@ select {
 .h-16 {
 	height: 4rem;
 }
-.h-screen {
-	height: 100vh;
-}
 .h-4 {
 	height: 1rem;
+}
+.h-screen {
+	height: 100vh;
 }
 .h-0 {
 	height: 0px;
@@ -983,6 +983,9 @@ select {
 .w-16 {
 	width: 4rem;
 }
+.w-4 {
+	width: 1rem;
+}
 .w-1\/12 {
 	width: 8.333333%;
 }
@@ -1000,9 +1003,6 @@ select {
 }
 .w-1\/2 {
 	width: 50%;
-}
-.w-4 {
-	width: 1rem;
 }
 .w-1\/4 {
 	width: 25%;
@@ -1918,6 +1918,10 @@ progress.cartBar[value]::-moz-progress-bar {
 
 	.md\:right-5 {
 		right: 1.25rem;
+	}
+
+	.md\:-right-4 {
+		right: -1rem;
 	}
 
 	.md\:order-first {
