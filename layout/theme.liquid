@@ -179,10 +179,10 @@
   {{ content_for_header }}
 </head>
 
-<body class="template-{{ request.page_type | handle }}" x-data="themeAlpine()" x-init="alpineInit()">
+<body class="template-{{ request.page_type | handle }}" x-data="themeAlpine">
 
   {%- comment -%} These render code for all on-page SVG icons, as well as the core model for alpineJS to manage the template.{%- endcomment -%}
-  {% render 'alpinescript' %}
+ <!--  {% render 'alpinescript' %} -->
   {% render 'svg-defs' %}
 
   <a class="opacity-0 pointer-events-none focus-visible:pointer-events-auto focus-visible:opacity-100 fixed block bg-white top-4 left-4 p-2 text-black z-[999]" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>

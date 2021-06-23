@@ -18,7 +18,7 @@
     "reset:dev": "run-s download:dev build:dev",
     "open:dev": "theme open -e development -E",
     "minify:all": "run-p minify:alpine minify:css minify:lazysizes && run-s minify:js sizes:assets",
-    "minify:alpine": "minify node_modules/alpinejs/dist/cdn.js > assets/alpine.min.js",
+    "minify:alpine": "minify assets/alpinescript.js node_modules/alpinejs/dist/cdn.js > assets/alpine.min.js",
     "minify:css": "minify assets/theme.css > assets/theme.min.css",
     "minify:lazysizes": "minify assets/lazysizes.config.js node_modules/lazysizes/plugins/rias/ls.rias.min.js node_modules/lazysizes/plugins/aspectratio/ls.aspectratio.min.js node_modules/lazysizes/plugins/attrchange/ls.attrchange.min.js node_modules/lazysizes/lazysizes.min.js > assets/lazysizes.min.js",
     "minify:js": "minify assets/lazysizes.min.js assets/alpine.min.js > assets/timber.min.js && minify assets/theme.js > assets/theme.min.js",
