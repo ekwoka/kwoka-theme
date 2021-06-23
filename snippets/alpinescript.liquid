@@ -89,7 +89,7 @@
             async addCart(index,id,quantity){
                 var formData = {
                     method: 'POST',
-                    headers: {'Content-Type': 'application/json',},
+                    headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({
                         'id': id,
                         'quantity': quantity,
@@ -130,16 +130,41 @@
 
     function emailCaptureSection() {
         return {
-            url: '',
+            url: 'https://manage.kmail-lists.com/ajax/subscriptions/subscribe',
             listID: '',
+            code: '',
+            fetchData(data) {
+                return {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: data
+                }
+            },
             email:'',
             show: false,
             sending: false,
             success: false,
             error: false,
             existed: false,
-            async fetchCoupon(code) {
-                await fetch();
+            async fetchCoupon() {
+                if(this.code) return await fetch(`https://{{ request.host }}/discount/${code}`);
+            },
+            async submitEmail() {
+                this.sending = true;
+                data = new URLSearchParams();
+                data.set('g', this.listID);
+                data.set('email',this.email);
+                response = await fetch(this.url,this.fetchData(data.toString()));
+                if(response.ok) window.localStorage.setItem('subscribed','true');
+                data = await response?.json();
+                if(response.ok) this.sending = false;
+                if(data?.data?.is_subscribed) return this.existed = true;
+                if(!data?.success) return this.error = true;
+                this.success = true;
+                console.log(data);
+                await this.fetchCoupon();
             },
             init() {
                 console.log('initializing...');
