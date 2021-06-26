@@ -65,3 +65,13 @@ progress.cartBar[value]::-moz-progress-bar {
 .index-banner {
   @apply visible block opacity-100
 }
+
+.newsletter-section {
+  & h2 {
+    @apply text-xl
+  }
+
+  & p {
+    @apply text-base py-4
+  }
+}

@@ -25,9 +25,8 @@
 }
 </style>
 
-<div class="relative flex flex-col items-center w-full p-8 mx-auto md:max-w-screen-sm gap-y-2"
-    x-data="emailCaptureSection" {%- if request.design_mode %} x-show="true" {%- else -%} x-show="open == true" {%-
-    endif -%} x-cloak>
+<div class="relative flex flex-col items-center w-full p-8 mx-auto md:max-w-screen-sm gap-y-2 newsletter-section"
+    x-data="emailCaptureSection" {%- if request.design_mode %} x-show="true" {%- else -%} x-show="open == true" {%- endif -%} x-cloak>
     <button @click.prevent="open = false" class="absolute right-4 md:-right-4 top-4" {%- if request.design_mode %}
         x-show="open == true" {%- endif -%}>close
         <svg class="inline-block w-4 h-4 mx-auto icon">
