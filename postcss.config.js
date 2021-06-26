@@ -1,6 +1,6 @@
 module.exports = {
   plugins: [
-
+    require('postcss-nesting'),
     ...(process.env.NODE_ENV === "production"
       ? [
         require(`tailwindcss`)(`./tailwind.config.js`),
