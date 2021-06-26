@@ -108,7 +108,7 @@ document.addEventListener('alpine:init', () => {
 
     /* Alpine Stores */
     console.log('Registering Stores');
-    Alpine.persistedStore('subscribed', 'false');
+    Alpine.persistedStore('subscribed', false);
 
     /* Alpine.data */
     console.log('Registering Alpine Data Objects');
@@ -126,25 +126,28 @@ document.addEventListener('alpine:init', () => {
             }
         },
         email: '',
+        open: true,
         subscribed: false,
         sending: false,
         success: false,
         error: false,
         existed: false,
+        get sent() {
+            if(this.success || this.error || this.existed) return true;
+            return false;
+        },
         async fetchCoupon() {
             if (this.code) return await fetch(`https://{{ request.host }}/discount/${code}`);
         },
         async submitEmail() {
-            console.log('Submitted');
-            this.$store.subscribed = true;
+            console.log(`Submitting subscriber: ${this.email}`);
             this.sending = true;
             data = new URLSearchParams();
             data.set('g', this.listID);
             data.set('email', this.email);
             response = await fetch(this.url, this.fetchData(data.toString()));
-            if (response.ok) this.subscribed = true;
+            if (!response?.ok) return setTimeout(() => this.submitEmail(),1000)
             data = await response?.json();
-            if (response.ok) this.sending = false;
             if (data?.data?.is_subscribed) return this.existed = true;
             if (!data?.success) return this.error = true;
             this.success = true;
@@ -153,7 +156,11 @@ document.addEventListener('alpine:init', () => {
         },
         init() {
             console.log('Initializing newsletter capture');
-            if (this.subscribed) return console.log('User Already Subscribed.\nHiding Newsletter Signup.');
+
+            if (this.$store.subscribed == true) {
+                this.open = false;
+                return console.log('User Already Subscribed.\nHiding Newsletter Signup.');
+            }
             return console.log('User not subscribed.\nShowing Newsletter Signup.');
         }
     }));

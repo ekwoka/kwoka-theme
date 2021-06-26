@@ -952,6 +952,9 @@ select {
 .h-4 {
 	height: 1rem;
 }
+.h-6 {
+	height: 1.5rem;
+}
 .h-screen {
 	height: 100vh;
 }
@@ -975,6 +978,9 @@ select {
 }
 .w-4 {
 	width: 1rem;
+}
+.w-6 {
+	width: 1.5rem;
 }
 .w-1\/12 {
 	width: 8.333333%;
@@ -1035,6 +1041,9 @@ select {
 .flex-shrink-0 {
 	flex-shrink: 0;
 }
+.flex-shrink {
+	flex-shrink: 1;
+}
 .\!translate-x-full {
 	--tw-translate-x: 100% !important;
 	transform: var(--tw-transform) !important;
@@ -1049,6 +1058,38 @@ select {
 }
 .transform {
 	transform: var(--tw-transform);
+}
+@-webkit-keyframes bounce {
+
+	0%, 100% {
+		transform: translateY(-25%);
+		-webkit-animation-timing-function: cubic-bezier(0.8,0,1,1);
+		        animation-timing-function: cubic-bezier(0.8,0,1,1);
+	}
+
+	50% {
+		transform: none;
+		-webkit-animation-timing-function: cubic-bezier(0,0,0.2,1);
+		        animation-timing-function: cubic-bezier(0,0,0.2,1);
+	}
+}
+@keyframes bounce {
+
+	0%, 100% {
+		transform: translateY(-25%);
+		-webkit-animation-timing-function: cubic-bezier(0.8,0,1,1);
+		        animation-timing-function: cubic-bezier(0.8,0,1,1);
+	}
+
+	50% {
+		transform: none;
+		-webkit-animation-timing-function: cubic-bezier(0,0,0.2,1);
+		        animation-timing-function: cubic-bezier(0,0,0.2,1);
+	}
+}
+.animate-bounce {
+	-webkit-animation: bounce 1s infinite;
+	        animation: bounce 1s infinite;
 }
 .cursor-pointer {
 	cursor: pointer;
@@ -1589,6 +1630,9 @@ select {
 .opacity-50 {
 	opacity: 0.5;
 }
+.opacity-40 {
+	opacity: 0.4;
+}
 .opacity-100 {
 	opacity: 1;
 }
@@ -1653,11 +1697,11 @@ select {
 	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	transition-duration: 150ms;
 }
-.duration-500 {
-	transition-duration: 500ms;
-}
 .duration-300 {
 	transition-duration: 300ms;
+}
+.duration-500 {
+	transition-duration: 500ms;
 }
 .duration-200 {
 	transition-duration: 200ms;

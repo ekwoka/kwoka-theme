@@ -2,7 +2,7 @@
 @tailwind utilities;
 
 [x-cloak] {
-    display:none;
+    @apply hidden !important
 }
 
 button, input, optgroup, select, textarea {
