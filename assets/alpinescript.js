@@ -137,7 +137,7 @@ document.addEventListener('alpine:init', () => {
             return false;
         },
         async fetchCoupon() {
-            if (this.code) return await fetch(`https://{{ request.host }}/discount/${code}`);
+            if (this.code) await fetch(`https://${window.location.hostname}/discount/${this.code}`);
         },
         async submitEmail() {
             console.log(`Submitting subscriber: ${this.email}`);
@@ -148,11 +148,13 @@ document.addEventListener('alpine:init', () => {
             response = await fetch(this.url, this.fetchData(data.toString()));
             if (!response?.ok) return setTimeout(() => this.submitEmail(),1000)
             data = await response?.json();
+            this.sending = false;
             if (data?.data?.is_subscribed) return this.existed = true;
             if (!data?.success) return this.error = true;
             this.success = true;
+            this.$store.subscribed = true;
             console.log(data);
-            await this.fetchCoupon();
+            this.fetchCoupon();
         },
         init() {
             console.log('Initializing newsletter capture');

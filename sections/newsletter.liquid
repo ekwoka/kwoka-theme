@@ -33,11 +33,11 @@
             <use xlink:href="#icon-close">
         </svg>
     </button>
-    <div class="flex flex-col items-center p-8 mx-auto transition-opacity duration-300" :class="sending ? 'opacity-40': ''" x-show="sent == false">
+    <div class="flex flex-col items-center p-8 mx-auto transition-opacity duration-300 newsletter-section" :class="sending ? 'opacity-40': ''" x-show="sent == false">
         <h2 class="flex-auto">{{ section.settings.captureHeader }}</h2>
             <p class="flex-auto">{{ section.settings.captureHtml }}</p>
             <form class="flex flex-col w-full gap-1 md:flex-row"
-                x-init="listID = '{{section.settings.listID}}';code='{{section.settings.couponCode}}'">
+                x-init="listID = '{{section.settings.listID}}';code='{{section.settings.couponCode}}';console.log('adding coupon code')">
                 <input
                     class="flex-auto w-full px-4 py-2 text-gray-900 placeholder-gray-500 bg-white shadow-md md:w-3/4 focus:ring-cta-600 focus:border-cta-600"
                     x-model="email" type="email" name="email" id="email" placeholder="Enter Email Here"
@@ -52,20 +52,37 @@
                 </button>
             </form>
     </div>
-    <div class="flex flex-col items-center p-8 mx-auto" x-show="error">
-        <h2 class="flex-auto">Oh no</h2>
-        <p>We had an error!!!</p>
+    <div class="flex flex-col items-center p-8 mx-auto newsletter-section" x-show="error" :class="sending ? 'opacity-40': ''">
+        <h2 class="flex-auto">{{ section.settings.errorH2 }}</h2>
+        <p>{{ section.settings.errorP }}</p>
+        {%- if section.settings.errorAgain -%}
+        <button
+            class="px-4 py-2 transition-all shadow-md min-w-max bg-gradient-to-t from-cta-700 to-cta-600 text-gray-50"
+            aria-label="Submit Email" @click.prevent="submitEmail()">
+            <span x-show="!sending">Try Again</span>
+            <svg x-show="sending" class="inline-block w-6 h-6 mx-auto icon animate-bounce">
+                <use xlink:href="#icon-cloud-upload"></use>
+            </svg>
+        </button>
+        {%- endif -%}
     </div>
-    <div class="flex flex-col items-center p-8 mx-auto" x-show="existed">
-        <h2 class="flex-auto">Sorry</h2>
-        <p>You already exist</p>
+    <div class="flex flex-col items-center p-8 mx-auto newsletter-section" x-show="existed">
+        <h2 class="flex-auto">{{ section.settings.existedH2 }}</h2>
+        <p>{{ section.settings.existedP }}
+            {%- if section.settings.existedCoupon -%}<br/>
+            Don't worry, we've still applied the coupon (<span class="font-mono" x-text="code"></span>) to your cart. Enjoy your {{ section.settings.couponOffer }}!
+            {%- endif -%}
+        </p>
     </div>
-    <div class="flex flex-col items-center p-8 mx-auto" x-show="success">
-        <h2 class="flex-auto">Success</h2>
-        <p>Here's your coupon</p>
+    <div class="flex flex-col items-center p-8 mx-auto newsletter-section" x-show="success">
+        <h2 class="flex-auto">{{ section.settings.successH2 }}</h2>
+        <p>
+            {{ section.settings.successP }}
+            {%- if section.settings.showCoupon -%}<br/>Your Coupon code (<span class="font-mono" x-text="code"></span>) has been automatically added to your cart. Enjoy your {{ section.settings.couponOffer }}{%- endif -%}
+        </p>
     </div>
         {%- if request.design_mode -%}
-        <div x-show="$store.subscribed == true">
+        <div class="newsletter-section" x-show="$store.subscribed == true">
         <p class="flex-auto" x-cloak>
             You have already submitted this newsletter or closed the dialogue box. This box here will only show in the
             Theme Customizer and will not show for customers. If you would like to see the fresh Newsletter Signup,
@@ -161,7 +178,7 @@
         },
         {
             "type": "header",
-            "content": "Text Settings"
+            "content": "Offer Settings"
         },
         {
             "type": "text",
@@ -182,6 +199,12 @@
             "default": "Get My Coupon"
         },
         {
+            "type": "checkbox",
+            "id": "showCoupon",
+            "label": "Offer Coupon",
+            "default": false
+        },
+        {
             "type": "text",
             "id": "couponCode",
             "label": "Coupon Code",
@@ -192,8 +215,68 @@
             "type": "text",
             "id": "couponOffer",
             "label": "Coupon Discount Offer",
-            "info": "Value of Coupon. '10% Off', '$20', etc",
+            "info": "Value of Coupon. '10% Off', '$20', etc. This will show automatically in the Success Message",
             "placeholder": "10% off"
+        },
+        {
+            "type": "header",
+            "content": "Success Message"
+        },
+        {
+            "type": "text",
+            "id": "successH2",
+            "label": "Success Header",
+            "default": "Thank You!"
+        },
+        {
+            "type": "textarea",
+            "id": "successP",
+            "label": "Success Message",
+            "default": "Look forward to our amazing emails in your inbox!"
+        },
+        {
+            "type": "header",
+            "content": "Error Message"
+        },
+        {
+            "type": "text",
+            "id": "errorH2",
+            "label": "Error Header",
+            "default": "Oh No!"
+        },
+        {
+            "type": "textarea",
+            "id": "errorP",
+            "label": "Error Message",
+            "default": "It looks like there was an error!"
+        },
+        {
+            "type": "checkbox",
+            "id": "errorAgain",
+            "label": "Allow User to Try Again",
+            "default": true
+        },
+        {
+            "type": "header",
+            "content": "existed Message"
+        },
+        {
+            "type": "text",
+            "id": "existedH2",
+            "label": "Already Subscribed Header",
+            "default": "Wait a sec..."
+        },
+        {
+            "type": "textarea",
+            "id": "existedP",
+            "label": "Already Subscribed Message",
+            "default": "You're already subscribed!"
+        },
+        {
+            "type": "checkbox",
+            "id": "existedCoupon",
+            "label": "Give Coupon Anyway",
+            "default": true
         }
     ],
     "presets": [
